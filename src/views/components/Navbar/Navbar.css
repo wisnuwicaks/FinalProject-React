@@ -1,0 +1,54 @@
+:root {
+  --accent-default: #3c64b1;
+  --accent-dark: #1e4693;
+  --accent-light: #5a82cf;
+  --theme-color : #fa1100;
+}
+
+.circle-bg {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f4f5f4;
+  text-align: center;
+}
+
+.navbar-container {
+  padding: 0 120px;
+  background-color: var(--theme-color)
+}
+
+.logo-text {
+  font-size: 50px;
+  font-family: Anton;
+  font-weight: bold;
+  color: white;
+  font-style: italic;
+}
+
+.cat-text {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+  padding: 15px;
+}
+
+.cat-text:hover{
+  background-color: rgb(219, 10, 10);
+}
+
+.search-bar {
+  background-color: var(--gray-lightest);
+  padding: 11px 16px;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  border-bottom: 1px solid white;
+  transition: all ease 150ms;
+}
+
+.search-bar.active {
+  border-bottom: 1px solid var(--accent-default);
+}
