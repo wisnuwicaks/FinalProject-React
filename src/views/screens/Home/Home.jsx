@@ -181,10 +181,10 @@ class Home extends React.Component {
     // alert(JSON.stringify(this.state.bestSellerData))
     return (
       <div> 
-       
+{/*        
         <div className="d-flex align-items-center justify-content-center my-3">
         
-        </div>
+        </div> */}
         <Carousel
           className="carousel-item-home-bg "
           next={this.nextHandler}

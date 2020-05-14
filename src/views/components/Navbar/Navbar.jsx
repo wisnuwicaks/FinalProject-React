@@ -85,7 +85,7 @@ class Navbar extends React.Component {
                   toggle={this.toggleDropdown}
                   isOpen={this.state.dropdownOpen}
                 >
-                  <DropdownToggle tag="div" className="d-flex">
+                  <DropdownToggle tag="div" className="d-flex" color="white">
                     <FontAwesomeIcon icon={faUserCircle} style={{ fontSize: 24}} />
                     <p className="medium ml-3 mr-4">
                       {this.props.user.username}
@@ -128,8 +128,8 @@ class Navbar extends React.Component {
                           </Link>
                         </DropdownItem>
 
-                        <DropdownItem onClick={this.logoutBtnHandler}>
-                          <Button type="button" className="btn btn-primary">Logout</Button>
+                        <DropdownItem onClick={this.logoutBtnHandler} className="text-center ">
+                          <Button type="button" className="btn btn-danger">Logout</Button>
                         </DropdownItem>
                       </>
                     ) : (
@@ -150,6 +150,9 @@ class Navbar extends React.Component {
                           >
                             Wishlist
                           </Link>
+                        </DropdownItem>
+                        <DropdownItem onClick={this.logoutBtnHandler} className="text-center ">
+                          <Button type="button"  className="btn btn-danger">Logout</Button>
                         </DropdownItem>
                       </>
                     )}

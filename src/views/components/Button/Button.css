@@ -2,13 +2,15 @@
   --accent-default: #3c64b1;
   --accent-dark: #1e4693;
   --accent-light: #5a82cf;
+  --contained-bg : #f70606;
+  --contained-light : #ff5555;
 }
 
 .custom-btn {
   padding: 12px 18px;
   vertical-align: middle;
   text-align: center;
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -23,13 +25,13 @@
 }
 
 .custom-btn-outlined {
-  border: 1px solid var(--accent-default);
-  color: var(--accent-default);
+  border: 1px solid var(--contained-bg);
+  color: var(--contained-bg)
 }
 
 .custom-btn-outlined:hover {
-  border: 1px solid var(--accent-light);
-  color: var(--accent-light);
+  border: 1px solid var(--contained-light);
+  color: var(--contained-light)
 }
 
 .custom-btn-outlined:active {
@@ -38,20 +40,20 @@
 }
 
 .custom-btn-contained {
-  border: 1px solid var(--accent-default);
-  background-color: var(--accent-default);
+  border: 1px solid var(--contained-bg);
+  background-color: var(--contained-bg);
   color: white;
 }
 
 .custom-btn-contained:hover {
-  border: 1px solid var(--accent-light);
-  background-color: var(--accent-light);
+  border: 1px solid var(--contained-light);
+  background-color: var(--contained-light);
   color: white;
 }
 
 .custom-btn-contained:active {
-  border: 1px solid var(--accent-dark);
-  background-color: var(--accent-dark);
+  border: 1px solid var(--contained-bg);
+  background-color: var(--contained-bg);
   color: white;
 }
 
