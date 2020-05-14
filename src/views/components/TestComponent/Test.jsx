@@ -3,28 +3,52 @@ import TextField from '../TextField/TextField'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Button, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+
 class Test extends React.Component{
+    state = {
+        dropdownOpen : false
+    }
+    toggle = () =>{
+        this.setState({dropdownOpen:!this.state.dropdownOpen})
+    }
     render(){
-        return(
-            // <div className="container">
-            //     <TextField></TextField>
-            // </div>
-            <div >
-                <Form>
-                <FormGroup>
-                    <Label for="exampleSelect">Select</Label>
-                    <Input type="select" name="select" id="exampleSelect">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    </Input>
-                </FormGroup>
-                </Form>
-            </div>
-        )
+      
+       
+        // const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        // const toggle = () => setDropdownOpen(prevState => !prevState);
+        return (
+          <div>
+            {/* <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle
+                tag="span"
+                data-toggle="dropdown"
+                aria-expanded={this.state.dropdownOpen}
+              >
+                Custom Dropdown Content
+              </DropdownToggle>
+              <DropdownMenu>
+                <div onClick={this.toggle}>Custom dropdown item</div>
+                <div onClick={this.toggle}>Custom dropdown item</div>
+                <div onClick={this.toggle}>Custom dropdown item</div>
+                <div onClick={this.toggle}>Custom dropdown item</div>
+              </DropdownMenu>
+            </Dropdown> */}
+
+            <Dropdown
+              group
+              isOpen={this.state.dropdownOpen}
+              size="sm"
+              toggle={this.toggle}
+            >
+              <DropdownToggle caret>Dropdown das</DropdownToggle>
+              <DropdownMenu>
+              <DropdownItem onClick={()=>alert("asdas")}>Action</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        );
     }
 }
 

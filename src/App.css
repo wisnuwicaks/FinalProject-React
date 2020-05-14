@@ -10,11 +10,11 @@
 }
 
 body {
-  font-family: Muli !important;
+  font-family: Roboto !important;
 }
 
 h1 {
-  font-family: Muli;
+  font-family: Roboto;
   font-weight: bold !important;
   font-size: 56px;
   line-height: 72px;
@@ -22,7 +22,7 @@ h1 {
 }
 
 h2 {
-  font-family: Muli;
+  font-family: Roboto;
   font-weight: bold !important;
   font-size: 44px;
   line-height: 56px;
@@ -30,7 +30,7 @@ h2 {
 }
 
 h3 {
-  font-family: Muli;
+  font-family: Roboto;
   font-weight: bold !important;
   font-size: 32px;
   line-height: 40px;
@@ -38,7 +38,7 @@ h3 {
 }
 
 h4 {
-  font-family: Muli;
+  font-family: Roboto;
   font-weight: bold !important;
   font-size: 26px;
   line-height: 32px;
@@ -46,7 +46,7 @@ h4 {
 }
 
 h5 {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold !important;
   font-size: 20px;
@@ -55,7 +55,7 @@ h5 {
 }
 
 h6 {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold !important;
   font-size: 18px;
@@ -64,7 +64,7 @@ h6 {
 }
 
 .subtitle-lg {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -73,7 +73,7 @@ h6 {
 }
 
 .subtitle-sm {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -82,7 +82,7 @@ h6 {
 }
 
 p {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -92,7 +92,7 @@ p {
 }
 
 p.small {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -101,7 +101,7 @@ p.small {
 }
 
 small {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
@@ -110,7 +110,7 @@ small {
 }
 
 caption {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 800;
   font-size: 14px;
@@ -120,7 +120,7 @@ caption {
 }
 
 .price {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 800;
   font-size: 48px;
@@ -129,7 +129,7 @@ caption {
 }
 
 .btn-text {
-  font-family: Muli;
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;

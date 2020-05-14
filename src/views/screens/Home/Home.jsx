@@ -183,21 +183,7 @@ class Home extends React.Component {
       <div> 
        
         <div className="d-flex align-items-center justify-content-center my-3">
-        <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold" onClick={e=>this.setState({bestSellerType:""})}>ALL</h6>
-          </Link>
-          <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold" onClick={e=>this.setState({bestSellerType:"Phone"})}>PHONE</h6>
-          </Link>
-          <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold" onClick={e=>this.setState({bestSellerType:"Laptop"})}>LAPTOP</h6>
-          </Link>
-          <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold" onClick={e=>this.setState({bestSellerType:"Tab"})}>TAB</h6>
-          </Link>
-          <Link to="/" style={{ color: "inherit" }}>
-            <h6 className="mx-4 font-weight-bold" onClick={e=>this.setState({bestSellerType:"Desktop"})}>DESKTOP</h6>
-          </Link>
+        
         </div>
         <Carousel
           className="carousel-item-home-bg "

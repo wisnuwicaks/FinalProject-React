@@ -3,16 +3,16 @@ import {Link} from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from 'axios'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/";
+import { faShoppingCart, faCartPlus } from "@fortawesome/free-solid-svg-icons/";
 import {
   Dropdown,
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Container, Row, Col, Button,Collapse 
+  Container, Row, Col, Button,Collapse,UncontrolledPopover, PopoverHeader, PopoverBody
 } from "reactstrap";
 
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faUser,faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import TextField from '../TextField/TextField'
 import "./Navbar.css";
 import ButtonUI from "../Button/Button";
@@ -34,51 +34,18 @@ class Navbar extends React.Component {
   };
 
   componentDidMount(){  
-    // this.itemsOnCart()
-    // this.props.itemOnTableChange(this.state.itemsNumberOnNavbar)
-    // this.setState({userIdActive:this.props.user.id})
-  //  this.setState({itemsNumberOnNavbar:this.props.user.itemsOnTable})
+    
   }
 
-  // cekCartDb = () =>{
-  //   Axios.get(`${API_URL}/carts`,{
-  //     params:{
-  //       userId:this.props.user.id
-  //     }
-  //   })
-  //   .then(res=>{
-  //     return res.data.length
-  //   })
-  // }
+ 
   //komponen ini hanya akan berjalan sekali ketika terdapat perubahan user active 
   //baik ketika logout atau signin
   componentDidUpdate(){ //hanya akan ketriger jika userID global state dan userIdActive berbeda
     const {itemsNumberOnNavbar,itemsOnCart} = this.state
-    // if(userIdActive!==this.props.user.id){
-    //   // this.itemsOnCart()
-    // }
-    // alert(itemsNumberOnNavbar)
-    // if(itemsNumberOnNavbar !==this.props.user.itemsOnTable){
 
-    //   this.setState({itemsNumberOnNavbar:this.props.user.itemsOnTable})
-    // }
   }
  
-  // itemsOnCart = () =>{
-  //   Axios.get(`${API_URL}/carts`,{
-  //     params:{
-  //       userId:this.props.user.id
-  //     }
-  //   })
-  //   .then(res=>{
-  //     this.setState({itemsNumberOnNavbar:res.data.length})
-  //     // this.props.itemOnTableChange(res.data.length)
-  //   })
-  //   .catch(err=>{
-  //     console.log(err)
-  //   })
-
-  // }
+ 
   searcBarInputHandler = (e) =>{
     const {searchBarInput} = this.state
     const {value} = e.target
@@ -94,6 +61,7 @@ class Navbar extends React.Component {
   };
 
   logoutBtnHandler = () => {
+    alert("sda")
     this.props.onLogout();
     // this.forceUpdate();
   };
@@ -108,17 +76,117 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div className="d-flex flex-row justify-content-between align-items-center navbar-container">
-       {/* <div className="col"> */}
-        <div className="logo-text border col-auto ">
-            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-              NEW
-              STYLE
+      <div>
+        <div className="d-flex flex-row justify-content-end navbar-container-black">
+          <div className="login-text col-auto p-2 ">
+            {this.props.user.id ? (
+              <>
+                <Dropdown
+                  toggle={this.toggleDropdown}
+                  isOpen={this.state.dropdownOpen}
+                >
+                  <DropdownToggle tag="div" className="d-flex">
+                    <FontAwesomeIcon icon={faUserCircle} style={{ fontSize: 24}} />
+                    <p className="medium ml-3 mr-4">
+                      {this.props.user.username}
+                    </p>
+                  </DropdownToggle>
+                  <DropdownMenu className="mt-2">
+                    {this.props.user.role == "admin" ? (
+                      <>
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/admin/dashboard"
+                          >
+                            Dashboard
+                          </Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/member"
+                          >
+                            Members
+                          </Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/payment"
+                          >
+                            Payments
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/report"
+                          >
+                            Report
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem onClick={this.logoutBtnHandler}>
+                          <Button type="button" className="btn btn-primary">Logout</Button>
+                        </DropdownItem>
+                      </>
+                    ) : (
+                      <>
+                        <DropdownItem onClick={() => this.props.onLogout()}>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/history"
+                          >
+                            History
+                          </Link>
+                        </DropdownItem>
+
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/wishlist"
+                          >
+                            Wishlist
+                          </Link>
+                        </DropdownItem>
+                      </>
+                    )}
+                  </DropdownMenu>
+                </Dropdown>
+              </>
+            ) : (
+              <>
+                <Link id="oke" style={{ color: "inherit" }} to="/auth">
+                  Login
+                </Link>
+                {" | "}
+                <Link id="oke" style={{ color: "inherit" }} to="/auth">
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="d-flex flex-row justify-content-between align-items-center navbar-container">
+          <div className="logo-text col-auto ">
+            <Link
+              id="oke"
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/"
+            >
+              NEW STYLE
             </Link>
           </div>
-       {/* </div> */}
-     
-          <div className="cat-text border">
+
+          <div
+            className="cat-text border"
+            toggle="popover"
+            trigger="hover"
+            placement="bottom"
+            content="Content"
+          >
             <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
               MEN
             </Link>
@@ -128,148 +196,51 @@ class Navbar extends React.Component {
               WOMEN
             </Link>
           </div>
-          <div className="cat-text col-auto border">
+          <div className="cat-text border">
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
+              BEST SELLER
+            </Link>
+          </div>
+          <div className="cat-text border">
             <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
               SALE
             </Link>
           </div>
-        <div
-          style={{ flex: 1 }}
-          className="px-3 d-flex flex-row justify-content-start border"
-        >
-        
-        <TextField 
-        type="text"
-        placeholder="Find your products here"
-        onChange={(e)=>this.props.onSearchInput(e.target.value)}
-        ></TextField>
-        
-        </div>
-        <div className="d-flex flex-row align-items-center">
-          {this.props.user.id ? (
-            <>
-              <Dropdown
-                toggle={this.toggleDropdown}
-                isOpen={this.state.dropdownOpen}
-              >
-                <DropdownToggle tag="div" className="d-flex">
-                  <FontAwesomeIcon icon={faUser} style={{ fontSize: 24 }} />
-                  <p className="small ml-3 mr-4">{this.props.user.username}</p>
-                </DropdownToggle>
-                <DropdownMenu className="mt-2">
-                  {this.props.user.role=="admin"? 
+          <div
+            style={{ flex: 1 }}
+            className="px-3 d-flex flex-row justify-content-start border"
+          >
+            <TextField
+              type="text"
+              placeholder="Find your products here"
+              onChange={(e) => this.props.onSearchInput(e.target.value)}
+            ></TextField>
+          </div>
+          <div className="d-flex flex-row align-items-center">
+       
+                <Link
+                  className="d-flex flex-column border"
+                  to="/cart"
+                  style={{ textDecoration: "none", color: "inherit" }}
                   
-                  <>
-                  <DropdownItem>
-                   <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/admin/dashboard"
-                   >
-                     Dashboard
-                   </Link>
-                 </DropdownItem>
-                 <DropdownItem>
-                   <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/member"
-                   >
-                      Members
-                   </Link>
-                  </DropdownItem>
-                 <DropdownItem>
-                   <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/payment"
-                   >Payments  
-                   </Link>
-                  </DropdownItem>
+                >
+                  <div className="pl-5 cart-margin">
+                    <CircleBg>
+                      <small style={{ color: "black", fontWeight: "bold", fontSize:"12px" }}>
+                        {this.props.user.itemsOnTable}
+                      </small>
+                    </CircleBg>
+                  </div>
+                    <FontAwesomeIcon
+                      className="mr-2"
+                      icon={faCartPlus}
+                      style={{ fontSize: 40,color:"white"}}
+                    />
+              
+                </Link>
 
-                  <DropdownItem>
-                   <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/report"
-                   >Report  
-                   </Link>
-                  </DropdownItem>
-                   
-                 </>
-                  :
-                  <>
-                  <DropdownItem>
-                   <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/history"
-                   >
-                     History
-                   </Link>
-                 </DropdownItem>
-                 
-                 <DropdownItem>
-                 <Link
-                     style={{ color: "inherit", textDecoration: "none" }}
-                     to="/wishlist"
-                   >
-                   Wishlist
-                   </Link>
-                   </DropdownItem>
-                 
-                 </>
-                  
-                  }
-                 
-                </DropdownMenu>
-              </Dropdown>
-              <Link
-                className="d-flex flex-row"
-                to="/cart"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <FontAwesomeIcon
-                  className="mr-2"
-                  icon={faShoppingCart}
-                  style={{ fontSize: 24 }}
-                />
-                <CircleBg>
-                  <small style={{ color: "#3C64B1", fontWeight: "bold" }}>
-             
-                    {this.props.user.itemsOnTable}
-
-                  </small>
-                </CircleBg>
-              </Link>
            
-              <Link to="/auth" className="ml-3" style={{textDecoration:"none",color:"inherit"}}>
-              <ButtonUI
-                    onClick={this.logoutBtnHandler}
-                    className="ml-3"
-                    type="contained"
-                  >
-                    Logout
-                    </ButtonUI>
-                  
-              </Link>
-            
-            </>
-          ) : (
-            <>
-              <ButtonUI className="mr-3" type="textual">
-                <Link
-                  style={{ textDecoration: "none", color: "inherit" }}
-                  to="/auth"
-                >
-                  Sign in
-                </Link>
-              </ButtonUI>
-              <ButtonUI type="contained">
-                <Link
-                  style={{ textDecoration: "none", color: "inherit" }}
-                  to="/auth"
-                >
-                  Sign up
-                </Link>
-              </ButtonUI>
-            </>
-          )}
+          </div>
         </div>
       </div>
     );

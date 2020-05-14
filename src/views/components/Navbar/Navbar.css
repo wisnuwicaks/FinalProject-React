@@ -1,8 +1,9 @@
 :root {
   --accent-default: #3c64b1;
   --accent-dark: #1e4693;
-  --accent-light: #5a82cf;
-  --theme-color : #fa1100;
+  --accent-light: #fbff00;
+  --navbar-bg : #f70606;
+  --navbar-color : white
 }
 
 .circle-bg {
@@ -15,22 +16,32 @@
 
 .navbar-container {
   padding: 0 120px;
-  background-color: var(--theme-color)
+  background-color: var(--navbar-bg)
 }
 
+.navbar-container-black {
+  padding: 0 120px;
+  background-color: black
+}
+
+.login-text{
+  font-size:20px;
+  color : white;
+  font-weight: bold;
+}
 .logo-text {
   font-size: 50px;
   font-family: Anton;
   font-weight: bold;
-  color: white;
+  color:var(--navbar-color);
   font-style: italic;
 }
 
 .cat-text {
   font-size: 30px;
-  font-family: sans-serif;
+  font-family: Roboto;
   font-weight: bold;
-  color: white;
+  color:var(--navbar-color);
   padding: 15px;
 }
 
@@ -51,4 +62,9 @@
 
 .search-bar.active {
   border-bottom: 1px solid var(--accent-default);
+}
+
+.cart-margin {
+  margin-bottom: -10px;
+  
 }
