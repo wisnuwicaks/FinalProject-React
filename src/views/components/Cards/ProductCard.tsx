@@ -2,7 +2,8 @@ import React from "react";
 import "./ProductCard.css";
 import ButtonUI from "../Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar,faGrinHearts } from "@fortawesome/free-regular-svg-icons";
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 interface ProductCardData {
@@ -24,11 +25,16 @@ class ProductCard extends React.Component<ProductCardProps> {
 
     return (
       <div className={`product-card d-inline-block ${this.props.className}`}>
-        <img
-          src={image}
-          alt={this.props.data.productName}
-          style={{ width: "224px", height: "250px", objectFit: "contain" }}
-        />
+        <div className="text-right">
+        <FontAwesomeIcon style={{ fontSize: "30px" }} icon={faHeart}/>
+        </div>
+        <div className="row justify-content-center border-bottom p-2">
+          <img
+            src={image}
+            alt={this.props.data.productName}
+            style={{ width: "224px", height: "250px", objectFit: "contain" }}
+          />
+        </div>
         <div>
           <p className="mt-3">{productName}</p>
           <h5 style={{ fontWeight: "bolder" }}>
@@ -51,14 +57,16 @@ class ProductCard extends React.Component<ProductCardProps> {
               <small className="ml-2">4.5</small>
             </div>
           </div>
-          <ButtonUI
+         
+        </div>
+        <div className="row justify-content-center pt-2">
+        <ButtonUI
             type="outlined"
             style={{ fontSize: "12px", padding: "4px 8px" }}
-          >
-            {" "}
-            <FontAwesomeIcon icon={faHeart} /> Add to wishlist
+          > ADD TO CART
           </ButtonUI>
         </div>
+      
       </div>
     );
   }

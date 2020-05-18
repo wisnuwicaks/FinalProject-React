@@ -6,22 +6,22 @@
   --gray-divider: #e2e5e6;
   --gray-default: #c3cbcd;
   --gray-dark: #737b7d;
-  --black: #373f41;
+  --black: #000000;
 
 }
 
 .custom-text-input {
   background-color: white;
   padding: 11px 16px;
-  border: 1px solid var(--accent-default);
+  /* border: 1px solid var(--accent-default); */
   font-size: 16px;
   width: 100%;
   transition: all ease 150ms;
-  font-family: Muli;
+  font-family: Roboto;
 }
 
 .custom-text-input.active {
-  border: 1px solid black;
+  border: 2px solid orangered;
 }
 
 .custom-text-input:valid {

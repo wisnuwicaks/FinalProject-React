@@ -138,7 +138,7 @@ class Home extends React.Component {
              
               <div key={`best-seller${val.id}`}>
                 <Link to={`/product/${val.id}`}>
-                   <ProductCard data={val} className="m-2" />;
+                   <ProductCard data={val} className="m-2" />
                 </Link>
               </div>
             :
@@ -181,7 +181,7 @@ class Home extends React.Component {
     // alert(JSON.stringify(this.state.bestSellerData))
     return (
       <div> 
-{/*        
+        {/*        
         <div className="d-flex align-items-center justify-content-center my-3">
         
         </div> */}
@@ -212,8 +212,8 @@ class Home extends React.Component {
         </div>
         {/* ABOUT SECTION */}
         <div
-          className="py-5 border border-danger"
-          style={{ marginTop: "128px", backgroundColor: Colors.lightestGray }}
+          className="py-5"
+          style={{ marginTop: "128px", backgroundColor: "black", color: "white" }}
         >
           <div className="container">
             <div className="row">
