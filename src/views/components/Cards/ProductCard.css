@@ -10,7 +10,6 @@
 }
 
 .product-card {
-  padding: 16px;
   border-radius: 8px;
   transition: all ease 150ms;
   box-sizing: border-box;
@@ -21,5 +20,5 @@
 .product-card:hover {
   box-shadow: 0px 4px 8px rgba(92, 107, 192, 0.2),
     0px 2px 4px #3b457b33;
-    
+
 }

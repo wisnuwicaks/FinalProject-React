@@ -25,17 +25,20 @@ class ProductCard extends React.Component<ProductCardProps> {
     const { id, productName, price, review, image } = this.props.data;
 
     return (
-      <div className={`product-card d-inline-block ${this.props.className}`}>
-        <div style={{backgroundImage:`url(${image})`,
-        backgroundSize:"contain", backgroundRepeat:"no-repeat",width:"240px", height:"250px"}}>
+      <div className={`product-card d-inline-block ${this.props.className} border `}>
+        <div 
+        className="border w-100"
+        style={{backgroundImage:`url(${image})`, borderTopLeftRadius:"8px", borderTopRightRadius:"8px",
+        backgroundSize:"100% 100%", backgroundPosition:"",width:"240px", height:"250px"}}>
      
-        <FontAwesomeIcon  style={{ fontSize: "30px" }} icon={faHeart}/>
-        
+        <FontAwesomeIcon className="m-2"
+        style={{ fontSize: "30px", float:"left"}} icon={faHeart} />
+   
      
         </div>
-     
+        <div className="p-2">
         <div>
-          <p className="mt-3">{productName}</p>
+          <p className="mt-2">{productName}</p>
           <h5 style={{ fontWeight: "bolder" }}>
             {new Intl.NumberFormat("id-ID", {
               style: "currency",
@@ -65,6 +68,10 @@ class ProductCard extends React.Component<ProductCardProps> {
           > ADD TO CART
           </ButtonUI>
         </div>
+
+        </div>
+
+       
       
       </div>
     );
