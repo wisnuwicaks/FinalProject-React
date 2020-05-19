@@ -165,7 +165,7 @@ class Home extends React.Component {
       return (
         <div key={`best-seller${val.id}`}>
           <Link to={`/product/${val.id}`}>
-            <ProductCard data={val} className="m-2" />;
+            <ProductCard data={val} className="m-2" />
           </Link>
         </div>
         )
