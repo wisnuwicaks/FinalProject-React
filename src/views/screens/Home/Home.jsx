@@ -152,7 +152,7 @@ class Home extends React.Component {
             val.category == this.state.bestSellerType ?
             <div key={`best-seller${val.id}`}>
               <Link to={`/product/${val.id}`}>
-                <ProductCard data={val} className="m-2" />;
+                <ProductCard data={val} className="m-2" />
               </Link>
             </div>
             :
