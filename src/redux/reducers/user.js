@@ -6,7 +6,8 @@ const { ON_LOGIN_FAIL,
   ON_REGISTER_FAIL,
   ON_REGISTER_SUCCESS,
   ITEMS_ON_TABLE_CHANGE,
-  ON_CART_UPDATE 
+  ON_CART_UPDATE,
+  ON_WISHLIST_UPDATE 
 } = userTypes;
 
 const init_state = {
@@ -19,6 +20,7 @@ const init_state = {
   errMsg: "",
   cookieChecked: false,
   cartItemsCount : 0,
+  wishListItems :[]
 };
 
 export default (state = init_state, action) => {
@@ -46,6 +48,8 @@ export default (state = init_state, action) => {
       return { ...state, cookieChecked: true };
     case ON_CART_UPDATE:
       return { ...state, cartItemsCount: action.payload };
+    case ON_WISHLIST_UPDATE:
+      return { ...state, wishListItems: action.payload};
     default:
       return { ...state, };
   }

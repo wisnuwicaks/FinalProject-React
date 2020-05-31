@@ -94,7 +94,7 @@ class Wishlist extends React.Component {
                 });
             }
             else{
-                swal("Add to wishlist", "Your item has been added to your cart", "success");
+                swal("Add to wishlist", "Your item has been added to your wishlist", "success");
                 Axios.get(`${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`)
                 .then((resSameData)=>{
                     const {data}=resSameData
