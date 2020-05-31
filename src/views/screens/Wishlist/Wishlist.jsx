@@ -7,7 +7,7 @@ import { Table, Alert } from "reactstrap";
 import Axios from "axios";
 import { API_URL } from "../../../constants/API";
 import ButtonUI from "../../components/Button/Button";
-import {itemOnTableChange} from '../../../redux/actions'
+import {cartUpdate} from '../../../redux/actions'
 import { Link } from "react-router-dom";
 
 class Wishlist extends React.Component {
@@ -25,13 +25,7 @@ class Wishlist extends React.Component {
   
   }
 
-  componentDidUpdate() {
-    // this.getWishListData();
-    if(this.state.wishListData.length !==this.props.user.itemsOnTable){
-      // this.getWishListData();
-      // this.renderWishListData();
-    }
-  }
+
 
 
   getWishListData = () => {
@@ -49,7 +43,7 @@ class Wishlist extends React.Component {
         console.log(err);
       });
 
-      // this.props.itemOnTableChange(this.state.wishListData.length)
+
      
   };
 
@@ -93,7 +87,7 @@ class Wishlist extends React.Component {
                     console.log(res);
                     swal("Add to Wishlist", "Your item has been added to your wishlist", "success");
                     this.deleteWishList(valItemSelected.id)
-                    this.props.itemOnTableChange(this.state.cartDataNow.length)
+                    this.props.cartUpdate(this.props.user.id)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -258,7 +252,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps ={
-  itemOnTableChange
+  cartUpdate
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Wishlist);

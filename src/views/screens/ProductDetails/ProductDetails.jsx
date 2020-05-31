@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 import Axios from "axios";
 import {connect} from 'react-redux'
 import { API_URL } from "../../../constants/API";
-import {itemOnTableChange} from '../../../redux/actions'
+import {cartUpdate} from '../../../redux/actions'
 class ProductDetails extends React.Component {
   state = {
     productData: {
@@ -91,7 +91,7 @@ class ProductDetails extends React.Component {
                     .then((res) => {
                         console.log(res);
                         swal("Add to cart", "Your item has been added to your cart", "success");
-                        this.props.itemOnTableChange(this.state.cartDataNow.length)
+                        this.props.cartUpdate(this.props.user.id)
                     })
                     .catch((err) => {
                         console.log(err);
@@ -187,6 +187,6 @@ const mapStateToProps = (state) =>{
 }
 
 const mapDispatchToProps ={
-    itemOnTableChange
+    cartUpdate
   }
 export default connect(mapStateToProps,mapDispatchToProps)(ProductDetails)

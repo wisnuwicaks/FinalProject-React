@@ -6,7 +6,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Axios from 'axios'
 import { API_URL } from "./constants/API";
-import {itemOnTableChange} from './redux/actions'
+import {cartUpdate} from './redux/actions'
 
 import Home from "./views/screens/Home/Home";
 import Navbar from "./views/components/Navbar/Navbar";
@@ -127,7 +127,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   keepLogin: userKeepLogin,
   cookieChecker,
-  itemOnTableChange,
+  cartUpdate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

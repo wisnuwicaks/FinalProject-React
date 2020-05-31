@@ -4,7 +4,8 @@ import Cookie from "universal-cookie";
 import userTypes from "../types/user";
 import swal from "sweetalert";
 
-const { ON_LOGIN_FAIL, ON_LOGIN_SUCCESS,ON_REGISTER_SUCCESS,ON_REGISTER_FAIL, ON_LOGOUT_SUCCESS,ITEMS_ON_TABLE_CHANGE } = userTypes;
+const { ON_LOGIN_FAIL, ON_LOGIN_SUCCESS,ON_REGISTER_SUCCESS,ON_REGISTER_FAIL, 
+  ON_LOGOUT_SUCCESS,ITEMS_ON_TABLE_CHANGE, ON_CART_UPDATE } = userTypes;
 
 const cookieObj = new Cookie();
 
@@ -120,10 +121,22 @@ export const cookieChecker = () => {
 //   };
 // };
 
-export const itemOnTableChange = (numberofitems) =>{
- 
-  return {
-    type : ITEMS_ON_TABLE_CHANGE,
-    payload : numberofitems,
+
+export const cartUpdate = (userId) => {
+  return (dispatch) => {
+      Axios.get(`${API_URL}/carts`, {
+          params: {
+              userId: userId
+          },
+      })
+          .then((res) => {
+              dispatch({
+                  type: ON_CART_UPDATE,
+                  payload: res.data.length,
+              });
+          })
+          .catch((err) => {
+              console.log(err);
+          });
   }
-}
+};

@@ -9,7 +9,7 @@ import ButtonUI from "../../components/Button/Button";
 import "./AuthScreen.css";
 
 // actions
-import { registerHandler, loginHandler,itemOnTableChange } from "../../../redux/actions";
+import { registerHandler, loginHandler,cartUpdate } from "../../../redux/actions";
 
 // const state = {
 //   registerActive : true,
@@ -36,6 +36,7 @@ class AuthScreen extends React.Component {
     if (this.props.user.id) {
       const cookie = new Cookies();
       cookie.set("authData", JSON.stringify(this.props.user), { path: "/" });
+      this.props.cartUpdate(this.props.user.id)
     }
   }
 
@@ -190,25 +191,8 @@ class AuthScreen extends React.Component {
     }
   };
 
-  getItemsOnCart = () =>{
-    Axios.get(`${API_URL}/carts`,{
-      params:{
-        userId:this.props.user.id
-      }
-    })
-    .then(res=>{
-      // this.setState({itemsNumberOnNavbar:res.data.length})
-      this.props.itemOnTableChange(res.data.length)
-      // this.props.itemOnTableChange(res.data.length)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-
-  }
   render() {
     if (this.props.user.id > 0) {
-    this.getItemsOnCart()
       return <Redirect to="/" />;
     }
     return (
@@ -258,7 +242,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   onRegister: registerHandler,
   onLogin: loginHandler,
-  itemOnTableChange,
+  cartUpdate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);

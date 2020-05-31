@@ -7,7 +7,7 @@ import { Table, Alert } from "reactstrap";
 import Axios from "axios";
 import { API_URL } from "../../../constants/API";
 import ButtonUI from "../../components/Button/Button";
-import {itemOnTableChange} from '../../../redux/actions'
+import {cartUpdate} from '../../../redux/actions'
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 
@@ -25,18 +25,10 @@ class Cart extends React.Component {
   componentDidMount() {
     
     this.getCartData();
-    // alert(this.state.cartData.length)
-    // this.props.itemOnTableChange(this.state.cartData.length)
+  
   
   }
 
-  componentDidUpdate() {
-    // this.getCartData();
-    if(this.state.cartData.length !==this.props.user.itemsOnTable){
-      // this.getCartData();
-      // this.renderCartData();
-    }
-  }
 
   deleteCartHandler = (id) => {
     Axios.delete(`${API_URL}/carts/${id}`)
@@ -59,14 +51,13 @@ class Cart extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ cartData: res.data });
-     
-        this.props.itemOnTableChange(this.state.cartData.length)
+        this.props.cartUpdate(this.props.user.id)
       })
       .catch((err) => {
         console.log(err);
       });
 
-      // this.props.itemOnTableChange(this.state.cartData.length)
+   
      
   };
 
@@ -276,7 +267,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps ={
-  itemOnTableChange
+  cartUpdate
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Cart);

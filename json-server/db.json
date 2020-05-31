@@ -1,305 +1,323 @@
 {
-    "posts": [],
-    "comments": [],
-    "users": [
-      {
-        "username": "denver",
-        "password": "denver",
-        "email": "denver@gmail.com",
-        "role": "user",
-        "fullName": "Denver",
-        "id": 1
-      },
-      {
-        "username": "sergio",
-        "password": "sergio",
-        "email": "sergio@gmail.com",
-        "role": "user",
-        "fullName": "Sergio",
-        "id": 2
-      },
-      {
-        "username": "nairobi",
-        "password": "nairobi",
-        "email": "nairobi@gmail.com",
-        "role": "user",
-        "fullName": "Nairobi",
-        "id": 3
-      },
-      {
-        "username": "admin",
-        "fullName": "Professor",
-        "password": "admin",
-        "email": "professor@gmail.com",
-        "role": "admin",
-        "id": 4
-      },
-      {
-        "username": "moskow",
-        "fullName": "Moskow",
-        "password": "moskow",
-        "email": "moskow@gmail.com",
-        "role": "user",
-        "id": 5
-      },
-      {
-        "username": "berlin",
-        "fullName": "Berlin",
-        "password": "berlin",
-        "email": "berlin@gmail.com",
-        "role": "user",
-        "id": 6
-      },
-      {
-        "username": "tokyo",
-        "fullName": "Tokyo",
-        "password": "tokyo",
-        "email": "tokyo@gmail.com",
-        "role": "user",
-        "id": 7
-      },
-      {
-        "username": "arturo",
-        "fullName": "Arturo",
-        "password": "arturo",
-        "email": "arturo@gmail.com",
-        "role": "user",
-        "id": 8
-      }
-    ],
-    "products": [
-      {
-        "productName": "iPhone 7 +",
-        "price": 5000000,
-        "category": "Phone",
-        "image": "https://ibox.co.id/media/wysiwyg/PromoOnline/web-banner---iphone-7-plus-rev.png",
-        "desc": "HP Terbaikk loh",
-        "id": 1
-      },
-      {
-        "productName": "iPad Pro 3",
-        "price": 15000000,
-        "category": "Tab",
-        "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-spacegray-201810.png",
-        "desc": "HP Terbaikk loh",
-        "id": 2
-      },
-      {
-        "productName": "Macbook Pro",
-        "price": 20000000,
-        "category": "Laptop",
-        "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
-        "desc": "HP Terbaikk loh",
-        "id": 3
-      },
-      {
-        "productName": "iMac (2019)",
-        "price": 23000000,
-        "category": "Desktop",
-        "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/m/imac-27-cto-hero-201903_1_1.jpeg",
-        "desc": "Desktop khusus para sultan gan.",
-        "id": 4
-      },
-      {
-        "productName": "iPhone 11 Pro Max",
-        "price": 24000000,
-        "category": "Phone",
-        "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-midnight-green_3.png",
-        "desc": "HP Kamera boba",
-        "id": 5
-      },
-      {
-        "productName": "iPad 7 ",
-        "price": 6000000,
-        "category": "Tab",
-        "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-wifi-select-space-201909_geo_us.png",
-        "desc": "iPad baru",
-        "id": 6
-      },
-      {
-        "productName": "OPPO Find X2 Pro",
-        "price": 5300000,
-        "category": "Phone",
-        "image": "https://image.oppo.com/content/dam/oppo/id/mkt/header/Compass-Pro%20orange-EN.png",
-        "desc": "Keluaran terbaru dari OPPO guys, STOCK TERBATAS!!",
-        "id": 7
-      },
-      {
-        "productName": "Xiaomi Note 8",
-        "price": 3000000,
-        "category": "Phone",
-        "image": "https://www.pngitem.com/pimgs/m/369-3695344_redmi-note-8-global-xiaomi-note-8-hd.png",
-        "desc": "Keluaran terbaruuuuu",
-        "id": 8
-      }
-    ],
-    "carts": [],
-    "wishlist": [
-      {
-        "userId": 5,
-        "productId": 6,
-        "id": 1
-      },
-      {
-        "userId": 1,
-        "productId": 5,
-        "id": 2
-      }
-    ],
-    "transactions": [
-      {
-        "userId": 6,
-        "totalPrice": 21650000,
-        "status": "success",
-        "buyDate": "Tue May 05 2020 19:38:31 GMT+0700 (Indochina Time)",
-        "endTrx": "Tue May 05 2020 19:44:29 GMT+0700 (Indochina Time)",
-        "id": 1
-      },
-      {
-        "userId": 6,
-        "totalPrice": 86000000,
-        "status": "success",
-        "buyDate": "Tue May 05 2020 19:39:02 GMT+0700 (Indochina Time)",
-        "endTrx": "Tue May 05 2020 19:45:13 GMT+0700 (Indochina Time)",
-        "id": 2
-      },
-      {
-        "userId": 1,
-        "totalPrice": 36050000,
-        "status": "success",
-        "buyDate": "Tue May 05 2020 19:41:45 GMT+0700 (Indochina Time)",
-        "endTrx": "Tue May 05 2020 19:44:25 GMT+0700 (Indochina Time)",
-        "id": 3
-      },
-      {
-        "userId": 1,
-        "totalPrice": 16000000,
-        "status": "success",
-        "buyDate": "Tue May 05 2020 19:42:18 GMT+0700 (Indochina Time)",
-        "endTrx": "Tue May 05 2020 19:45:14 GMT+0700 (Indochina Time)",
-        "id": 4
-      },
-      {
-        "userId": 8,
-        "totalPrice": 16600000,
-        "status": "pending",
-        "buyDate": "Tue May 05 2020 19:46:19 GMT+0700 (Indochina Time)",
-        "endTrx": "-",
-        "id": 5
-      },
-      {
-        "userId": 2,
-        "totalPrice": 21100000,
-        "status": "pending",
-        "buyDate": "Tue May 05 2020 19:47:28 GMT+0700 (Indochina Time)",
-        "endTrx": "-",
-        "id": 6
-      }
-    ],
-    "transactions_detail": [
-      {
-        "transactionId": 1,
-        "productId": 1,
-        "price": 5000000,
-        "quantity": 1,
-        "total_price": 5000000,
-        "id": 1
-      },
-      {
-        "transactionId": 1,
-        "productId": 8,
-        "price": 3000000,
-        "quantity": 2,
-        "total_price": 6000000,
-        "id": 2
-      },
-      {
-        "transactionId": 1,
-        "productId": 7,
-        "price": 5300000,
-        "quantity": 2,
-        "total_price": 10600000,
-        "id": 3
-      },
-      {
-        "transactionId": 2,
-        "productId": 3,
-        "price": 20000000,
-        "quantity": 2,
-        "total_price": 40000000,
-        "id": 4
-      },
-      {
-        "transactionId": 2,
-        "productId": 4,
-        "price": 23000000,
-        "quantity": 2,
-        "total_price": 46000000,
-        "id": 5
-      },
-      {
-        "transactionId": 3,
-        "productId": 2,
-        "price": 15000000,
-        "quantity": 2,
-        "total_price": 30000000,
-        "id": 6
-      },
-      {
-        "transactionId": 3,
-        "productId": 6,
-        "price": 6000000,
-        "quantity": 1,
-        "total_price": 6000000,
-        "id": 7
-      },
-      {
-        "transactionId": 4,
-        "productId": 1,
-        "price": 5000000,
-        "quantity": 2,
-        "total_price": 10000000,
-        "id": 8
-      },
-      {
-        "transactionId": 4,
-        "productId": 8,
-        "price": 3000000,
-        "quantity": 2,
-        "total_price": 6000000,
-        "id": 9
-      },
-      {
-        "transactionId": 5,
-        "productId": 7,
-        "price": 5300000,
-        "quantity": 2,
-        "total_price": 10600000,
-        "id": 10
-      },
-      {
-        "transactionId": 5,
-        "productId": 8,
-        "price": 3000000,
-        "quantity": 2,
-        "total_price": 6000000,
-        "id": 11
-      },
-      {
-        "transactionId": 6,
-        "productId": 2,
-        "price": 15000000,
-        "quantity": 1,
-        "total_price": 15000000,
-        "id": 12
-      },
-      {
-        "transactionId": 6,
-        "productId": 6,
-        "price": 6000000,
-        "quantity": 1,
-        "total_price": 6000000,
-        "id": 13
-      }
-    ]
-  }
+  "posts": [],
+  "comments": [],
+  "users": [
+    {
+      "username": "denver",
+      "password": "denver",
+      "email": "denver@gmail.com",
+      "role": "user",
+      "fullName": "Denver",
+      "id": 1
+    },
+    {
+      "username": "sergio",
+      "password": "sergio",
+      "email": "sergio@gmail.com",
+      "role": "user",
+      "fullName": "Sergio",
+      "id": 2
+    },
+    {
+      "username": "nairobi",
+      "password": "nairobi",
+      "email": "nairobi@gmail.com",
+      "role": "user",
+      "fullName": "Nairobi",
+      "id": 3
+    },
+    {
+      "username": "admin",
+      "fullName": "Professor",
+      "password": "admin",
+      "email": "professor@gmail.com",
+      "role": "admin",
+      "id": 4
+    },
+    {
+      "username": "moskow",
+      "fullName": "Moskow",
+      "password": "moskow",
+      "email": "moskow@gmail.com",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "username": "berlin",
+      "fullName": "Berlin",
+      "password": "berlin",
+      "email": "berlin@gmail.com",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "username": "tokyo",
+      "fullName": "Tokyo",
+      "password": "tokyo",
+      "email": "tokyo@gmail.com",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "username": "arturo",
+      "fullName": "Arturo",
+      "password": "arturo",
+      "email": "arturo@gmail.com",
+      "role": "user",
+      "id": 8
+    }
+  ],
+  "products": [
+    {
+      "productName": "iPhone 7 +",
+      "price": 5000000,
+      "category": "Phone",
+      "image": "https://ibox.co.id/media/wysiwyg/PromoOnline/web-banner---iphone-7-plus-rev.png",
+      "desc": "HP Terbaikk loh",
+      "id": 1
+    },
+    {
+      "productName": "iPad Pro 3",
+      "price": 15000000,
+      "category": "Tab",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-spacegray-201810.png",
+      "desc": "HP Terbaikk loh",
+      "id": 2
+    },
+    {
+      "productName": "Macbook Pro",
+      "price": 20000000,
+      "category": "Laptop",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
+      "desc": "HP Terbaikk loh",
+      "id": 3
+    },
+    {
+      "productName": "iMac (2019)",
+      "price": 23000000,
+      "category": "Desktop",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/m/imac-27-cto-hero-201903_1_1.jpeg",
+      "desc": "Desktop khusus para sultan gan.",
+      "id": 4
+    },
+    {
+      "productName": "iPhone 11 Pro Max",
+      "price": 24000000,
+      "category": "Phone",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-midnight-green_3.png",
+      "desc": "HP Kamera boba",
+      "id": 5
+    },
+    {
+      "productName": "iPad 7 ",
+      "price": 6000000,
+      "category": "Tab",
+      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-wifi-select-space-201909_geo_us.png",
+      "desc": "iPad baru",
+      "id": 6
+    },
+    {
+      "productName": "OPPO Find X2 Pro",
+      "price": 5300000,
+      "category": "Phone",
+      "image": "https://image.oppo.com/content/dam/oppo/id/mkt/header/Compass-Pro%20orange-EN.png",
+      "desc": "Keluaran terbaru dari OPPO guys, STOCK TERBATAS!!",
+      "id": 7
+    },
+    {
+      "productName": "Xiaomi Note 8",
+      "price": 3000000,
+      "category": "Phone",
+      "image": "https://www.pngitem.com/pimgs/m/369-3695344_redmi-note-8-global-xiaomi-note-8-hd.png",
+      "desc": "Keluaran terbaruuuuu",
+      "id": 8
+    }
+  ],
+  "carts": [
+    {
+      "userId": 1,
+      "productId": 1,
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "productId": 2,
+      "quantity": 1,
+      "id": 2
+    }
+  ],
+  "wishlist": [
+    {
+      "userId": 5,
+      "productId": 6,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "productId": 5,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "productId": 1,
+      "id": 3
+    }
+  ],
+  "transactions": [
+    {
+      "userId": 6,
+      "totalPrice": 21650000,
+      "status": "success",
+      "buyDate": "Tue May 05 2020 19:38:31 GMT+0700 (Indochina Time)",
+      "endTrx": "Tue May 05 2020 19:44:29 GMT+0700 (Indochina Time)",
+      "id": 1
+    },
+    {
+      "userId": 6,
+      "totalPrice": 86000000,
+      "status": "success",
+      "buyDate": "Tue May 05 2020 19:39:02 GMT+0700 (Indochina Time)",
+      "endTrx": "Tue May 05 2020 19:45:13 GMT+0700 (Indochina Time)",
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "totalPrice": 36050000,
+      "status": "success",
+      "buyDate": "Tue May 05 2020 19:41:45 GMT+0700 (Indochina Time)",
+      "endTrx": "Tue May 05 2020 19:44:25 GMT+0700 (Indochina Time)",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "totalPrice": 16000000,
+      "status": "success",
+      "buyDate": "Tue May 05 2020 19:42:18 GMT+0700 (Indochina Time)",
+      "endTrx": "Tue May 05 2020 19:45:14 GMT+0700 (Indochina Time)",
+      "id": 4
+    },
+    {
+      "userId": 8,
+      "totalPrice": 16600000,
+      "status": "pending",
+      "buyDate": "Tue May 05 2020 19:46:19 GMT+0700 (Indochina Time)",
+      "endTrx": "-",
+      "id": 5
+    },
+    {
+      "userId": 2,
+      "totalPrice": 21100000,
+      "status": "pending",
+      "buyDate": "Tue May 05 2020 19:47:28 GMT+0700 (Indochina Time)",
+      "endTrx": "-",
+      "id": 6
+    }
+  ],
+  "transactions_detail": [
+    {
+      "transactionId": 1,
+      "productId": 1,
+      "price": 5000000,
+      "quantity": 1,
+      "total_price": 5000000,
+      "id": 1
+    },
+    {
+      "transactionId": 1,
+      "productId": 8,
+      "price": 3000000,
+      "quantity": 2,
+      "total_price": 6000000,
+      "id": 2
+    },
+    {
+      "transactionId": 1,
+      "productId": 7,
+      "price": 5300000,
+      "quantity": 2,
+      "total_price": 10600000,
+      "id": 3
+    },
+    {
+      "transactionId": 2,
+      "productId": 3,
+      "price": 20000000,
+      "quantity": 2,
+      "total_price": 40000000,
+      "id": 4
+    },
+    {
+      "transactionId": 2,
+      "productId": 4,
+      "price": 23000000,
+      "quantity": 2,
+      "total_price": 46000000,
+      "id": 5
+    },
+    {
+      "transactionId": 3,
+      "productId": 2,
+      "price": 15000000,
+      "quantity": 2,
+      "total_price": 30000000,
+      "id": 6
+    },
+    {
+      "transactionId": 3,
+      "productId": 6,
+      "price": 6000000,
+      "quantity": 1,
+      "total_price": 6000000,
+      "id": 7
+    },
+    {
+      "transactionId": 4,
+      "productId": 1,
+      "price": 5000000,
+      "quantity": 2,
+      "total_price": 10000000,
+      "id": 8
+    },
+    {
+      "transactionId": 4,
+      "productId": 8,
+      "price": 3000000,
+      "quantity": 2,
+      "total_price": 6000000,
+      "id": 9
+    },
+    {
+      "transactionId": 5,
+      "productId": 7,
+      "price": 5300000,
+      "quantity": 2,
+      "total_price": 10600000,
+      "id": 10
+    },
+    {
+      "transactionId": 5,
+      "productId": 8,
+      "price": 3000000,
+      "quantity": 2,
+      "total_price": 6000000,
+      "id": 11
+    },
+    {
+      "transactionId": 6,
+      "productId": 2,
+      "price": 15000000,
+      "quantity": 1,
+      "total_price": 15000000,
+      "id": 12
+    },
+    {
+      "transactionId": 6,
+      "productId": 6,
+      "price": 6000000,
+      "quantity": 1,
+      "total_price": 6000000,
+      "id": 13
+    }
+  ]
+}

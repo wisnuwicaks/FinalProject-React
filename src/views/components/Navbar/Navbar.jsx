@@ -30,7 +30,7 @@ import ButtonUI from "../Button/Button";
 import {
   logoutHandler,
   onSearchInput,
-  itemOnTableChange,
+  cartUpdate,
 } from "../../../redux/actions";
 import { API_URL } from "../../../constants/API";
 
@@ -269,7 +269,7 @@ class Navbar extends React.Component {
                       fontSize: "10px",
                     }}
                   >
-                    {this.props.user.itemsOnTable}
+                    {this.props.user.cartItemsCount}
                   </small>
                 </CircleBg>
               </div>
@@ -294,6 +294,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   onLogout: logoutHandler,
   onSearchInput,
-  itemOnTableChange,
+  cartUpdate,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
