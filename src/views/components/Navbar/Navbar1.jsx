@@ -36,7 +36,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import { faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../TextField/TextField";
-import "./Navbar.css";
+import "./Navbarku.css";
 import ButtonUI from "../Button/Button";
 import {
   logoutHandler,

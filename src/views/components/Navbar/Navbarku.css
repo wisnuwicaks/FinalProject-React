@@ -91,3 +91,18 @@
   text-align: right;
   justify-self: right;
 }
+
+.edit-modal img {
+  height: 160px;
+  object-fit: contain;
+}
+
+.hoverLink:hover{
+  text-decoration: underline;
+  cursor: pointer; 
+}
+
+.btnStrapCustom{
+  background-color: var(--navbar-bg) !important ;
+  border-radius: 0;
+}

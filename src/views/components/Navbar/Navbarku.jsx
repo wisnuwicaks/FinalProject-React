@@ -8,36 +8,32 @@ import {
   faCartPlus,
   faSignInAlt,
   faBorderAll,
-  faSearch
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons/";
 import {
   Dropdown,
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Container,
-  Row,
-  Col,
-  Collapse,
-  UncontrolledPopover,
-  PopoverHeader,
-  PopoverBody,
+  Modal,
+  ModalHeader,
+  ModalBody,
 } from "reactstrap";
 
 import {
-  InputGroup,
-  Navbar,
-  Nav,
-  NavDropdown,
+  Col,
   Form,
-  FormControl,
+  FormGroup,
+  InputGroup,
   Button,
+  Navbar,
+  FormControl,
 } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.css";
 import { faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../TextField/TextField";
-import "./Navbar.css";
+import "./Navbarku.css";
 import ButtonUI from "../Button/Button";
 import {
   logoutHandler,
@@ -57,7 +53,8 @@ class Navbarku extends React.Component {
     dropdownOpen: false,
     itemsNumberOnNavbar: 0,
     userIdActive: 0,
-    open: false,
+
+    modalOpen: false,
   };
 
   searcBarInputHandler = (e) => {
@@ -84,8 +81,8 @@ class Navbarku extends React.Component {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
   };
 
-  setOpen = () => {
-    this.setState({ open: !this.state.open });
+  toggleModal = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
   };
 
   render() {
@@ -189,14 +186,16 @@ class Navbarku extends React.Component {
               </>
             ) : (
               <>
-                <Link id="oke" style={{ color: "inherit" }} to="/auth">
-                  <FontAwesomeIcon
-                    className="mr-2"
-                    icon={faSignInAlt}
-                    style={{ fontSize: 20, color: "white" }}
-                  />
+                <FontAwesomeIcon
+                  className="mr-2"
+                  icon={faSignInAlt}
+                  style={{ fontSize: 20, color: "white" }}
+                />
+
+                <label onClick={() => this.toggleModal()} className="hoverLink">
                   Login
-                </Link>
+                </label>
+
                 {" | "}
                 <Link id="oke" style={{ color: "inherit" }} to="/auth">
                   Register
@@ -267,23 +266,23 @@ class Navbarku extends React.Component {
               <div className="col-8">
                 <Form inline className="">
                   <InputGroup className="w-100">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1" >
-                        
-                        <FontAwesomeIcon 
-                          icon={faSearch}
-                          style={{ fontSize: 15, color: "red" }}
-                          
-                        >
-                          
-                        </FontAwesomeIcon>
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
                     <FormControl
                       placeholder="Find your product"
                       aria-label="search  "
                       aria-describedby="basic-addon1"
                     />
+                    <InputGroup.Append>
+                      <Button
+                        type="button"
+                        className="btn btn-dark"
+                        onClick={() => alert("asd")}
+                      >
+                        <FontAwesomeIcon
+                          icon={faSearch}
+                          style={{ fontSize: 15, color: "white" }}
+                        ></FontAwesomeIcon>
+                      </Button>
+                    </InputGroup.Append>
                   </InputGroup>
                 </Form>
               </div>
@@ -323,6 +322,54 @@ class Navbarku extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
+
+        <Modal
+          toggle={this.toggleModal}
+          isOpen={this.state.modalOpen}
+          className="edit-modal"
+          centered
+        >
+          <ModalHeader toggle={this.toggleModal}>
+            <div className="text-center justify-content-center">
+              <h3>Login</h3>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <div className="row px-4">
+              <Form>
+                <Form.Group>
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control placeholder="Enter Full Name" />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control placeholder=" Enter Email Address" />
+                </Form.Group>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="username"
+                      placeholder="Enter Username"
+                    />
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Enter Password"
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+              <div className="col-12 text-center" >
+                <Button variant="danger" className="btnStrapCustom">Login</Button>
+                </div>
+            </div>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }
