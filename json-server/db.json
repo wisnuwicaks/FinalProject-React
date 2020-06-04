@@ -69,67 +69,67 @@
   ],
   "products": [
     {
-      "productName": "iPhone 7 +",
-      "price": 5000000,
+      "productName": "Red Black Plaid Shirt Jacket",
+      "price": 230000,
       "category": "Phone",
-      "image": "https://ibox.co.id/media/wysiwyg/PromoOnline/web-banner---iphone-7-plus-rev.png",
-      "desc": "HP Terbaikk loh",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200529103531_84_full.png",
+      "size": "S,M,L,XL",
       "id": 1
     },
     {
-      "productName": "iPad Pro 3",
-      "price": 15000000,
+      "productName": "Linen-Cotton Band Collar Basic ",
+      "price": 279900,
       "category": "Tab",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-pro-11-select-cell-spacegray-201810.png",
-      "desc": "HP Terbaikk loh",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200531183926_94_full.png",
+      "size":  "S,M,L,XL",
       "id": 2
     },
     {
-      "productName": "Macbook Pro",
-      "price": 20000000,
+      "productName": "Cozy Marl Maroon Flannel Shirt",
+      "price": 199900,
       "category": "Laptop",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/m/b/mbp15touch-silver-select-cto-201807_3_1.jpeg",
-      "desc": "HP Terbaikk loh",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200529111927_14_full.png",
+      "size":  "S,M,L,XL",
       "id": 3
     },
     {
-      "productName": "iMac (2019)",
+      "productName": "Cozy Marl Black Flannel Shirt",
       "price": 23000000,
       "category": "Desktop",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/m/imac-27-cto-hero-201903_1_1.jpeg",
-      "desc": "Desktop khusus para sultan gan.",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200529111733_19_full.png",
+      "size":  "S,M,L,XL",
       "id": 4
     },
     {
       "productName": "iPhone 11 Pro Max",
-      "price": 24000000,
+      "price": 249900,
       "category": "Phone",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-midnight-green_3.png",
-      "desc": "HP Kamera boba",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200530124653_46_full.png",
+      "size":  "S,M,L,XL",
       "id": 5
     },
     {
-      "productName": "iPad 7 ",
-      "price": 6000000,
+      "productName": "Slim Fit Hennepin Chino Cream",
+      "price": 159000,
       "category": "Tab",
-      "image": "https://ibox.co.id/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/i/p/ipad-wifi-select-space-201909_geo_us.png",
-      "desc": "iPad baru",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200518145132_7_full.png",
+      "size":  "S,M,L,XL",
       "id": 6
     },
     {
-      "productName": "OPPO Find X2 Pro",
-      "price": 5300000,
+      "productName": "Slim Ultimate Chino White",
+      "price": 200000,
       "category": "Phone",
-      "image": "https://image.oppo.com/content/dam/oppo/id/mkt/header/Compass-Pro%20orange-EN.png",
-      "desc": "Keluaran terbaru dari OPPO guys, STOCK TERBATAS!!",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200506171330_62_full.png",
+      "size":  "S,M,L,XL",
       "id": 7
     },
     {
-      "productName": "Xiaomi Note 8",
-      "price": 3000000,
+      "productName": "Slim Ultimate Chino Brown",
+      "price": 300000,
       "category": "Phone",
-      "image": "https://www.pngitem.com/pimgs/m/369-3695344_redmi-note-8-global-xiaomi-note-8-hd.png",
-      "desc": "Keluaran terbaruuuuu",
+      "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200506170745_87_full.png",
+      "size":  "S,M,L,XL",
       "id": 8
     }
   ],

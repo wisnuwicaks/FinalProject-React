@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,8 @@ import {
   faShoppingCart,
   faCartPlus,
   faSignInAlt,
+  faBorderAll,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons/";
 import {
   Dropdown,
@@ -16,13 +18,23 @@ import {
   Container,
   Row,
   Col,
-  Button,
   Collapse,
   UncontrolledPopover,
   PopoverHeader,
   PopoverBody,
 } from "reactstrap";
 
+import {
+  InputGroup,
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+
+import "bootstrap/dist/css/bootstrap.css";
 import { faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../TextField/TextField";
 import "./Navbar.css";
@@ -38,7 +50,7 @@ const CircleBg = ({ children }) => {
   return <div className="circle-bg">{children}</div>;
 };
 
-class Navbar extends React.Component {
+class Navbarku extends React.Component {
   state = {
     searchBarIsFocused: false,
     searchBarInput: "",
@@ -47,15 +59,6 @@ class Navbar extends React.Component {
     userIdActive: 0,
     open: false,
   };
-
-  componentDidMount() {}
-
-  //komponen ini hanya akan berjalan sekali ketika terdapat perubahan user active
-  //baik ketika logout atau signin
-  componentDidUpdate() {
-    //hanya akan ketriger jika userID global state dan userIdActive berbeda
-    const { itemsNumberOnNavbar, itemsOnCart } = this.state;
-  }
 
   searcBarInputHandler = (e) => {
     const { searchBarInput } = this.state;
@@ -72,9 +75,9 @@ class Navbar extends React.Component {
   };
 
   logoutBtnHandler = () => {
-    alert("sda");
-    this.props.onLogout();
-    // this.forceUpdate();
+    // this.props.onLogout();
+    alert("sd2");
+    return <Redirect to="/history" />;
   };
 
   toggleDropdown = () => {
@@ -142,11 +145,12 @@ class Navbar extends React.Component {
                           </Link>
                         </DropdownItem>
 
-                        <DropdownItem
-                          onClick={this.logoutBtnHandler}
-                          className="text-center "
-                        >
-                          <Button type="button" className="btn btn-danger">
+                        <DropdownItem className="text-center ">
+                          <Button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={this.logoutBtnHandler}
+                          >
                             Logout
                           </Button>
                         </DropdownItem>
@@ -201,85 +205,123 @@ class Navbar extends React.Component {
             )}
           </div>
         </div>
-        <div className="d-flex navbar-container border-bot px-5">
-          <div></div>
-          <div className="logo-text ml-3">
-            <Link
-              id="oke"
-              style={{ textDecoration: "none", color: "inherit" }}
-              to="/"
-            >
-              NEW STYLE
-            </Link>
-          </div>
-
-          <div
-            className="cat-text ml-3"
-            toggle="popover"
-            trigger="hover"
-            placement="bottom"
-            content="Content"
-          >
-            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-              MEN
-            </Link>
-          </div>
-          <div className="cat-text ml-3">
-            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-              WOMEN
-            </Link>
-          </div>
-          <div className="cat-text ml-3">
-            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-              BEST SELLER
-            </Link>
-          </div>
-          <div className="cat-text ml-3">
-            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
-              SALE
-            </Link>
-          </div>
-          <div
-            style={{ display: "flex", flex:"1" }}
-            className=""
-          >
-            <input
-              className="m-auto w-100 justify-content-center"
-              type="text"
-              placeholder="Find your products here"
-              onChange={(e) => this.props.onSearchInput(e.target.value)}
-            />
-          </div>
-          
-        <div 
-        style={{ flex:"0" }}
-        className=""
-        >
-        <Link
-              className="d-flex flex-column justify-content-center pl-2"
-              to="/cart"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <div className="cart-margin">
-                <CircleBg>
-                  <small
-                    style={{
-                      color: "black",
-                      fontWeight: "bold",
-                      fontSize: "10px",
-                    }}
-                  >
-                    {this.props.user.cartItemsCount}
-                  </small>
-                </CircleBg>
+        <div className="navbar-container border-bot px-5">
+          <Navbar expand="lg" className="p-0">
+            <Navbar.Brand href="#home" className="">
+              <div className="logo-text">
+                <Link
+                  id="oke"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/"
+                >
+                  NEW STYLE
+                </Link>
               </div>
-              <FontAwesomeIcon
-                className="mr-2"
-                icon={faCartPlus}
-                style={{ fontSize: 30, color: "white" }}
-              />
-            </Link>
-        </div>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav" className="p-0">
+              <div className="cat-text">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/"
+                >
+                  MEN
+                </Link>
+              </div>
+
+              <div className="cat-text">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/"
+                >
+                  WOMEN
+                </Link>
+              </div>
+
+              <div className="cat-text">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/"
+                >
+                  BEST SELLER
+                </Link>
+              </div>
+              <div className="cat-text">
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/"
+                >
+                  SALE
+                </Link>
+              </div>
+
+              {/* <div style={{ display: "flex", flex: "1" }} className="">
+                <input
+                  className="m-auto w-100 justify-content-center"
+                  type="text"
+                  placeholder="Find your products here"
+                  onChange={(e) => this.props.onSearchInput(e.target.value)}
+                />
+              </div> */}
+
+              <div className="col-8">
+                <Form inline className="">
+                  <InputGroup className="w-100">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="basic-addon1" >
+                        
+                        <FontAwesomeIcon 
+                          icon={faSearch}
+                          style={{ fontSize: 15, color: "red" }}
+                          
+                        >
+                          
+                        </FontAwesomeIcon>
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      placeholder="Find your product"
+                      aria-label="search  "
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                </Form>
+              </div>
+
+              <div style={{ flex: "0" }} className="">
+                <Link
+                  className="d-flex flex-column justify-content-center pl-2"
+                  to="/cart"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <div
+                    style={{ justifyContent: "flex-end" }}
+                    className="d-flex"
+                  >
+                    <CircleBg>
+                      <small
+                        className="pt-2"
+                        style={{
+                          color: "black",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        <div className="p-1">
+                          {this.props.user.cartItemsCount}
+                        </div>
+                      </small>
+                    </CircleBg>
+                  </div>
+                  <FontAwesomeIcon
+                    className="mr-2"
+                    icon={faCartPlus}
+                    style={{ fontSize: 30, color: "white" }}
+                  />
+                </Link>
+              </div>
+            </Navbar.Collapse>
+          </Navbar>
         </div>
       </div>
     );
@@ -296,4 +338,4 @@ const mapDispatchToProps = {
   onSearchInput,
   cartUpdate,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbarku);

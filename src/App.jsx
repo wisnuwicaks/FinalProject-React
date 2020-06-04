@@ -9,7 +9,8 @@ import { API_URL } from "./constants/API";
 import {cartUpdate} from './redux/actions'
 
 import Home from "./views/screens/Home/Home";
-import Navbar from "./views/components/Navbar/Navbar";
+import Navbarku from "./views/components/Navbar/Navbarku";
+import Navbar1 from "./views/components/Navbar/Navbar1";
 import AuthScreen from "./views/screens/Auth/AuthScreen";
 import ProductDetails from "./views/screens/ProductDetails/ProductDetails";
 import AdminDashboard from "./views/screens/Admin/AdminDashboard"
@@ -89,7 +90,7 @@ class App extends React.Component {
       
       return (
         <>
-          <Navbar />
+          <Navbarku />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/auth" component={AuthScreen} />
@@ -103,6 +104,7 @@ class App extends React.Component {
             <Route exact path="/allproduct" component={AllProduct} />
             <Route exact path="/history" component={History} />
             <Route exact path="/test" component={Test} />
+            <Route exact path="/navbar1" component={Navbar1} />
             {this.renderAdminRoutes()}
             {this.userRoutes()}
             <Route exact path="/pagenotfound" component={PageNotFound} />

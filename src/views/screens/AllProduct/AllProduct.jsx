@@ -38,23 +38,29 @@ class AllProduct extends React.Component {
 
 
   addToWishListHandler = (id) => {
-    Axios.post(`${API_URL}/wishlist`, {
-      userId: this.props.user.id,
-      productId: id,
-    })
-      .then((res) => {
-        console.log(res);
-        swal("Add to cart", "Your item has been added to your wishlist", "success");
-        this.getProductData()
+    if (this.props.user.id > 0) {
+      Axios.post(`${API_URL}/wishlist`, {
+        userId: this.props.user.id,
+        productId: id,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log(res);
+          swal("Add to Wishlist", "Your item has been added to your wishlist", "success");
+          this.getProductData()
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    swal("Error", "Pelase login first", "error");
+
+
   }
 
 
   deleteWishList = (idToDelete) => {
-    
+
     Axios.get(`${API_URL}/wishlist/`, {
       params: {
         userId: this.props.user.id,
@@ -84,7 +90,7 @@ class AllProduct extends React.Component {
     // console.log(this.state.bestSellerData)
     return productData.map((val) => {
       return <>
-        <div key={`best-seller${val.id}`}>
+        <div key={`all-product${val.id}`}>
           <div style={{ position: "absolute", zIndex: "2", marginTop: "15px", marginLeft: "20px", color: "red" }}>
             {this.props.user.wishListItems.includes(val.id) ?
               <CircleBg>
@@ -114,14 +120,16 @@ class AllProduct extends React.Component {
     })
   }
   render() {
-    console.log(this.props.user.wishListItems)
+   
     return (
+      <div className="container-fluid bg-color">
       <div className="container">
         {/* BEST SELLER SECTION */}
-        <h2 className="text-center font-weight-bolder mt-5">All Product Available</h2>
+        <h2 className="text-center font-weight-bolder pt-3">All Product Available</h2>
         <div className="row d-flex flex-wrap justify-content-center">
           {this.renderProducts()}
         </div>
+      </div>
       </div>
     )
   }

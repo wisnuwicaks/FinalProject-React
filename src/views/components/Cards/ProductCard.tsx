@@ -11,7 +11,7 @@ interface ProductCardData {
   id?: number;
   productName?: string;
   price?: number;
-  review?: number;
+  size?: string;
   image?: string;
 }
 
@@ -22,7 +22,7 @@ type ProductCardProps = {
 
 class ProductCard extends React.Component<ProductCardProps> {
   render() {
-    const { id, productName, price, review, image } = this.props.data;
+    const { id, productName, price, size, image } = this.props.data;
 
     return (
       <div className={`product-card d-inline-block ${this.props.className} border `}>
@@ -36,7 +36,7 @@ class ProductCard extends React.Component<ProductCardProps> {
    
      
         </div>
-        <div className="p-2">
+        <div className="p-2" style={{backgroundColor:"white", borderBottomLeftRadius:"8px", borderBottomRightRadius:"8px"}}>
         <div>
           <p className="mt-2">{productName}</p>
           <h5 style={{ fontWeight: "bolder" }}>
@@ -45,21 +45,10 @@ class ProductCard extends React.Component<ProductCardProps> {
               currency: "IDR",
             }).format(price)}
           </h5>
-          <p className="small">Jakarta Selatan</p>
+          <p className="small">Size Available :</p>
         </div>
         <div className="d-flex flex-row align-items-center justify-content-between mt-2">
-          <div>
-            <div className="d-flex flex-row align-items-center justify-content-between">
-              {/* Render stars dynamically */}
-              <FontAwesomeIcon style={{ fontSize: "10px" }} icon={faStar} />
-              <FontAwesomeIcon style={{ fontSize: "10px" }} icon={faStar} />
-              <FontAwesomeIcon style={{ fontSize: "10px" }} icon={faStar} />
-              <FontAwesomeIcon style={{ fontSize: "10px" }} icon={faStar} />
-              <FontAwesomeIcon style={{ fontSize: "10px" }} icon={faStar} />
-              <small className="ml-2">4.5</small>
-            </div>
-          </div>
-         
+        <p className="small">{size}</p>
         </div>
         <div className="row justify-content-center pt-2">
         <ButtonUI
