@@ -36,6 +36,7 @@ import TextField from "../TextField/TextField";
 import "./Navbarku.css";
 import ButtonUI from "../Button/Button";
 import {
+  loginHandler,
   logoutHandler,
   onSearchInput,
   cartUpdate,
@@ -48,12 +49,14 @@ const CircleBg = ({ children }) => {
 
 class Navbarku extends React.Component {
   state = {
+    loginForm: {
+      username: "",
+      password: "",
+      showPassword: false,
+    },
     searchBarIsFocused: false,
     searchBarInput: "",
     dropdownOpen: false,
-    itemsNumberOnNavbar: 0,
-    userIdActive: 0,
-
     modalOpen: false,
   };
 
@@ -63,6 +66,28 @@ class Navbarku extends React.Component {
     this.setState({ searchBarInput: value });
     this.props.onSearchInput(searchBarInput);
   };
+
+  inputHandler = (e, field, form) => {
+    const { value } = e.target;
+    
+    this.setState({
+      [form]: {
+        ...this.state[form],
+        [field]: value,
+      },
+    })
+  };
+  loginBtnHandler = () => {
+    const { username, password } = this.state.loginForm;
+    let newUser = {
+      username,
+      password,
+    };
+
+    this.props.onLogin(newUser);
+    this.setState({modalOpen:!this.state.modalOpen})
+  };
+
   onFocus = () => {
     this.setState({ searchBarIsFocused: true });
   };
@@ -72,9 +97,10 @@ class Navbarku extends React.Component {
   };
 
   logoutBtnHandler = () => {
-    // this.props.onLogout();
-    alert("sd2");
-    return <Redirect to="/history" />;
+    this.props.onLogout();
+   
+    return <Redirect to="/" />;
+    alert("asds")
   };
 
   toggleDropdown = () => {
@@ -143,18 +169,20 @@ class Navbarku extends React.Component {
                         </DropdownItem>
 
                         <DropdownItem className="text-center ">
+                          <Link to="/">
                           <Button
                             type="button"
                             className="btn btn-danger"
-                            onClick={this.logoutBtnHandler}
+                            onClick={()=>this.logoutBtnHandler()}
                           >
                             Logout
                           </Button>
+                          </Link>
                         </DropdownItem>
                       </>
                     ) : (
                       <>
-                        <DropdownItem onClick={() => this.props.onLogout()}>
+                        <DropdownItem>
                           <Link
                             style={{ color: "inherit", textDecoration: "none" }}
                             to="/history"
@@ -171,13 +199,16 @@ class Navbarku extends React.Component {
                             Wishlist
                           </Link>
                         </DropdownItem>
+                        
                         <DropdownItem
-                          onClick={this.logoutBtnHandler}
+                          onClick={()=>this.logoutBtnHandler()}
                           className="text-center "
                         >
+                          <Link to="/">
                           <Button type="button" className="btn btn-danger">
                             Logout
                           </Button>
+                          </Link>
                         </DropdownItem>
                       </>
                     )}
@@ -335,37 +366,29 @@ class Navbarku extends React.Component {
             </div>
           </ModalHeader>
           <ModalBody>
-            <div className="row px-4">
-              <Form>
+            <div className="row">
+              <Form className="w-100 px-4">
                 <Form.Group>
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control placeholder="Enter Full Name" />
+                  <Form.Label>Email/Username</Form.Label>
+                  <Form.Control 
+                  value={this.state.loginForm.username}
+                  onChange={(e) => this.inputHandler(e, "username", "loginForm")}
+                  placeholder="Enter email or username" />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control placeholder=" Enter Email Address" />
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control 
+                  value={this.state.loginForm.password}
+                  onChange={(e) => this.inputHandler(e, "password", "loginForm")}
+                  placeholder=" Enter password" />
                 </Form.Group>
-                <Form.Row>
-                  <Form.Group as={Col}>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="username"
-                      placeholder="Enter Username"
-                    />
-                  </Form.Group>
-
-                  <Form.Group as={Col}>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Enter Password"
-                    />
-                  </Form.Group>
-                </Form.Row>
+                <Form.Group>
+                  <Form.Check type="checkbox" label="Show Password" />
+                </Form.Group>
               </Form>
               <div className="col-12 text-center" >
-                <Button variant="danger" className="btnStrapCustom">Login</Button>
+                <Button onClick={()=>this.loginBtnHandler()} variant="danger" className="btnStrapCustom">Login</Button>
                 </div>
             </div>
           </ModalBody>
@@ -381,6 +404,7 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = {
+  onLogin : loginHandler,
   onLogout: logoutHandler,
   onSearchInput,
   cartUpdate,
