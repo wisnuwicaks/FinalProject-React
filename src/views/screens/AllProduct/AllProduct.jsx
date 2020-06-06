@@ -122,9 +122,8 @@ class AllProduct extends React.Component {
   render() {
    
     return (
-      <div className="container-fluid bg-color">
+      <div className="container-fluid bg-color border">
       <div className="container">
-        {/* BEST SELLER SECTION */}
         <h2 className="text-center font-weight-bolder pt-3">All Product Available</h2>
         <div className="row d-flex flex-wrap justify-content-center">
           {this.renderProducts()}
