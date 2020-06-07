@@ -19,6 +19,7 @@ class ProductDetails extends React.Component {
       category: "",
       id: 0,
     },
+    selectedSize: "",
     cartDataNow: [],
   };
 
@@ -145,26 +146,52 @@ class ProductDetails extends React.Component {
   };
 
   componentDidMount() {
-    const { productData } = this.state;
-    Axios.get(`${API_URL}/products/${this.props.match.params.productId}`)
-      .then((res) => {
-        this.setState({ productData: { ...productData, ...res.data } });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+   
+    this.getProductData()
+
   }
 
-  renderSize = (size) => {
-      
-    let arr = size.split(",");
-      return arr.map((val)=>{
-      return <>
-      <SizeBoxBtn className="m-1">{val}</SizeBoxBtn>
-      </>
-      })
-     
-      
+  getProductData = () =>{
+    const { productData } = this.state;
+    Axios.get(`${API_URL}/products/${this.props.match.params.productId}`)
+    .then((res) => {
+      this.setState({ productData: { ...productData, ...res.data } });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  selectSize = (sizePick) => {
+    this.setState({ selectedSize: sizePick });
+    this.renderSize(sizePick)
+    this.getProductData()
+  };
+
+  renderSize = () => {
+    let arr = this.state.productData.size.split(",");
+    return arr.map((val) => {
+      if (this.state.selectedSize && val===this.state.selectedSize) {
+        return (
+          <>
+            <SizeBoxBtn className="m-1 active" onClick={() => this.selectSize(val)}>
+              {val}
+            </SizeBoxBtn>
+          </>
+        );
+      }
+      else{
+ 
+        return (
+          <>
+            <SizeBoxBtn className="m-1" onClick={() => this.selectSize(val)}>
+              {val}
+            </SizeBoxBtn>
+          </>
+        );
+      }
+    
+    });
   };
 
   render() {
@@ -200,10 +227,8 @@ class ProductDetails extends React.Component {
               }).format(price)}
             </h4>
             <p className="mt-4">{size}</p>
-            <div className="d-flex border">
-            {this.renderSize(size)}
-            </div>
-          
+            <div className="d-flex border">{this.renderSize()}</div>
+
             <div className="d-flex mt-4">
               <ButtonUI onClick={this.addToCartHandler}>Add To Cart</ButtonUI>
               <ButtonUI
