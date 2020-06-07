@@ -80,7 +80,7 @@ class Cart extends React.Component {
   renderCartData = ()=>{
     
     return this.state.cartData.map((val,index)=>{
-      const {quantity,product,id} = val
+      const {quantity,product,size,id} = val
       const { productName,price,image,category } = product
     
       return (
@@ -88,6 +88,7 @@ class Cart extends React.Component {
         <tr key={`beda-${id}`}>
           <td>{index+1}</td>
           <td>{productName}</td>
+          <td>{size}</td>
           <td>{new Intl.NumberFormat("id-ID",{style:"currency", currency: "IDR"}).format(price)}</td>
           <td>{quantity}</td>
           <td> 
@@ -195,6 +196,7 @@ class Cart extends React.Component {
               <tr>
                   <th>No.</th>
                   <th>Product Name</th>
+                  <th>Size</th>
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Image</th>

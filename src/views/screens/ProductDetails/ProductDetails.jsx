@@ -82,7 +82,15 @@ class ProductDetails extends React.Component {
         "You have not login yet, please login before add your item",
         "error"
       );
-    } else {
+    } 
+    else if(this.state.selectedSize==false){
+      swal(
+        "Select Size First",
+        "Please select items size to add to cart",
+        "error"
+      );
+    }
+    else {
       Axios.get(`${API_URL}/carts`, {
         params: {
           userId: this.props.user.id,
@@ -91,13 +99,14 @@ class ProductDetails extends React.Component {
         console.log(res);
         this.setState({ cartDataNow: res.data });
         let cekDuplicate = this.state.cartDataNow.findIndex((val) => {
-          return val.productId == this.state.productData.id;
+          return val.productId == this.state.productData.id && val.size == this.state.productData.size;
         });
         if (cekDuplicate == -1) {
           console.log(this.state.productData.id);
           Axios.post(`${API_URL}/carts`, {
             userId: this.props.user.id,
             productId: this.state.productData.id,
+            size : this.state.selectedSize,
             quantity: 1,
           })
             .then((res) => {
@@ -119,7 +128,11 @@ class ProductDetails extends React.Component {
             "success"
           );
           Axios.get(
-            `${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`
+            `${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`,{
+              params:{
+                size:this.state.selectedSize
+              }
+            }
           )
             .then((resSameData) => {
               const { data } = resSameData;
@@ -127,6 +140,7 @@ class ProductDetails extends React.Component {
               Axios.put(`${API_URL}/carts/${data.id}`, {
                 userId: this.state.cartDataNow[cekDuplicate].userId,
                 productId: this.state.cartDataNow[cekDuplicate].productId,
+                size:this.state.cartDataNow[cekDuplicate].size,
                 quantity: this.state.cartDataNow[cekDuplicate].quantity + 1,
                 id: this.state.cartDataNow[cekDuplicate].id,
               })
@@ -220,13 +234,17 @@ class ProductDetails extends React.Component {
           </div>
           <div className="col-6 border text-nowrap">
             <h3> {productName}</h3>
+            <div style={{color:"red"}}>
             <h4>
               {new Intl.NumberFormat("id-ID", {
                 style: "currency",
                 currency: "IDR",
               }).format(price)}
             </h4>
-            <p className="mt-4">{size}</p>
+            </div>
+            <div style={{color:"grey"}}>
+            <h6>Selected Size : {this.state.selectedSize}</h6>
+            </div>
             <div className="d-flex border">{this.renderSize()}</div>
 
             <div className="d-flex mt-4">

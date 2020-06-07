@@ -81,7 +81,7 @@
       "price": 279900,
       "category": "Tab",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200531183926_94_full.png",
-      "size":  "S,M,L",
+      "size": "S,M,L",
       "id": 2
     },
     {
@@ -89,7 +89,7 @@
       "price": 199900,
       "category": "Laptop",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200529111927_14_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 3
     },
     {
@@ -97,7 +97,7 @@
       "price": 23000000,
       "category": "Desktop",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200529111733_19_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 4
     },
     {
@@ -105,7 +105,7 @@
       "price": 249900,
       "category": "Phone",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200530124653_46_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 5
     },
     {
@@ -113,7 +113,7 @@
       "price": 159000,
       "category": "Tab",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200518145132_7_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 6
     },
     {
@@ -121,7 +121,7 @@
       "price": 200000,
       "category": "Phone",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200506171330_62_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 7
     },
     {
@@ -129,7 +129,7 @@
       "price": 300000,
       "category": "Phone",
       "image": "https://files.sirclocdn.xyz/mensoriginalbranded/products/_200506170745_87_full.png",
-      "size":  "S,M,L,XL",
+      "size": "S,M,L,XL",
       "id": 8
     }
   ],
@@ -137,12 +137,14 @@
     {
       "userId": 1,
       "productId": 1,
+      "size": "S",
       "quantity": 1,
       "id": 1
     },
     {
       "userId": 1,
       "productId": 2,
+      "size": "S",
       "quantity": 1,
       "id": 2
     }
