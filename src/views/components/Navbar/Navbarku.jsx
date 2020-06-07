@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Cookies from "universal-cookie";
 import Axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -60,6 +61,13 @@ class Navbarku extends React.Component {
     modalOpen: false,
   };
 
+  componentDidUpdate() {
+    if (this.props.user.id) {
+      const cookie = new Cookies();
+      cookie.set("authData", JSON.stringify(this.props.user), { path: "/" });
+      this.props.cartUpdate(this.props.user.id)
+    }
+  }
   searcBarInputHandler = (e) => {
     const { searchBarInput } = this.state;
     const { value } = e.target;
@@ -388,7 +396,7 @@ class Navbarku extends React.Component {
                 </Form.Group>
               </Form>
               <div className="col-12 text-center" >
-                <Button onClick={()=>this.loginBtnHandler()} variant="danger" className="btnStrapCustom">Login</Button>
+                <Button onClick={this.loginBtnHandler} variant="danger" className="btnStrapCustom">Login</Button>
                 </div>
             </div>
           </ModalBody>
