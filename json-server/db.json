@@ -161,6 +161,20 @@
       "size": "M",
       "quantity": 1,
       "id": 4
+    },
+    {
+      "userId": 1,
+      "productId": 3,
+      "size": "M",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "productId": 6,
+      "size": "M",
+      "quantity": 3,
+      "id": 7
     }
   ],
   "wishlist": [

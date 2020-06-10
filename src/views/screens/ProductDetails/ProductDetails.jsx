@@ -73,9 +73,7 @@ class ProductDetails extends React.Component {
   };
 
   addToCartHandler = () => {
-    // POST method ke /cart
-    // Isinya: userId, productId, quantity
-    // console.log(this.props.user.id);
+ 
     if (this.props.user.id < 1) {
       swal(
         "Sorry :(",
@@ -99,8 +97,10 @@ class ProductDetails extends React.Component {
         console.log(res);
         this.setState({ cartDataNow: res.data });
         let cekDuplicate = this.state.cartDataNow.findIndex((val) => {
-          return val.productId == this.state.productData.id && val.size == this.state.productData.size;
+          
+          return val.productId == this.state.productData.id && val.size == this.state.selectedSize;
         });
+        alert(cekDuplicate)
         if (cekDuplicate == -1) {
           console.log(this.state.productData.id);
           Axios.post(`${API_URL}/carts`, {
