@@ -122,13 +122,9 @@ class Home extends React.Component {
         console.log(err);
       });
   };
-  // componentDidUpdate(){
-  //   this.renderProducts()
-  //   alert(this.props.user.searchInput)
-  // }
+
   renderProducts = () => {
     const {bestSellerType}=this.state
-    // console.log(this.state.bestSellerData)
     return this.state.bestSellerData.map((val) => {
       if(bestSellerType || this.props.search.searchInput){
         if(this.props.search.searchInput){

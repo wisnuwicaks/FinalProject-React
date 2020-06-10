@@ -9,6 +9,7 @@ import { API_URL } from "./constants/API";
 import {cartUpdate} from './redux/actions'
 
 import Home from "./views/screens/Home/Home";
+import HomeEdit from "./views/screens/Home/HomeEdit";
 import Navbarku from "./views/components/Navbar/Navbarku";
 import Navbar1 from "./views/components/Navbar/Navbar1";
 import AuthScreen from "./views/screens/Auth/AuthScreen";
@@ -92,7 +93,7 @@ class App extends React.Component {
         <>
           <Navbarku />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={HomeEdit} />
             <Route exact path="/auth" component={AuthScreen} />
             <Route
               exact

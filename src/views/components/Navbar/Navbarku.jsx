@@ -272,16 +272,16 @@ class Navbarku extends React.Component {
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/"
                 >
-                  WOMEN
+                  WOMEN 
                 </Link>
               </div>
 
               <div className="cat-text">
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
-                  to="/"
+                  to="/allproduct"
                 >
-                  BEST SELLER
+                  ALL PRODUCT
                 </Link>
               </div>
               <div className="cat-text">
@@ -289,7 +289,7 @@ class Navbarku extends React.Component {
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/"
                 >
-                  SALE
+                  NEW COLLECTION
                 </Link>
               </div>
 
