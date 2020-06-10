@@ -27,6 +27,20 @@ export const loginHandler = (userData) => {
             type: ON_LOGIN_SUCCESS,
             payload: res.data[0],
           });
+          Axios.get(`${API_URL}/carts`, {
+            params: {
+              userId: res.data[0].id,
+            },
+          })
+            .then((res) => {
+              dispatch({
+                type: ON_CART_UPDATE,
+                payload: res.data.length,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
           swal('Login Failed','Username or password was wrong',"error")
           dispatch({
@@ -123,11 +137,12 @@ export const cookieChecker = () => {
 // };
 
 
-export const cartUpdate = (userId) => {
+export const cartUpdate = (userIdNow) => {
+  console.log(userIdNow)
   return (dispatch) => {
       Axios.get(`${API_URL}/carts`, {
           params: {
-              userId: userId
+              userId: userIdNow
           },
       })
           .then((res) => {
