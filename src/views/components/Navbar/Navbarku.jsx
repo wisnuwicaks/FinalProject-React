@@ -293,14 +293,7 @@ class Navbarku extends React.Component {
                 </Link>
               </div>
 
-              {/* <div style={{ display: "flex", flex: "1" }} className="">
-                <input
-                  className="m-auto w-100 justify-content-center"
-                  type="text"
-                  placeholder="Find your products here"
-                  onChange={(e) => this.props.onSearchInput(e.target.value)}
-                />
-              </div> */}
+          
 
               <div className="col-8">
                 <Form inline className="">

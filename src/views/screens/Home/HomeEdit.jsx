@@ -117,11 +117,44 @@ class HomeEdit extends React.Component {
             </Carousel.Item>
           </Carousel>
         </div>
-        <div className="container border border-success">
-          {/* BEST SELLER SECTION */}
+        <div className="container-fluid border border-success">
+          {/* Category Section */}
           <h2 className="text-center font-weight-bolder mt-5">BEST SELLER</h2>
           <div className="row d-flex flex-wrap justify-content-center">
-            {this.renderProducts()}
+            <div className="col-lg-4 border">
+              <div className="layerButton">
+                <ButtonUI className="btnHover">MEN SHOP</ButtonUI>
+              </div>
+
+              <div className="layerBackground">
+                <img
+                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Men.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="col-lg-4 border">
+              <div className="layerButton">
+                <ButtonUI className="btnHover">WOMEN SHOP</ButtonUI>
+              </div>
+              <div className="layerBackground">
+                <img
+                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Women.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="layerButton">
+                <ButtonUI className="btnHover">SALE ITEMS</ButtonUI>
+              </div>
+              <div className="layerBackground">
+                <img
+                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Accessories.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
         </div>
         {/* ABOUT SECTION */}

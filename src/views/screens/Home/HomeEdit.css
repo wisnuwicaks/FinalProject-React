@@ -12,3 +12,29 @@
   width: 100vw;
   height: 600px;
 }
+
+.layerButton{
+  z-index: 2;
+  display: flex;
+  bottom: 290px;
+  right: 190px;
+  position: absolute;
+}
+
+
+.backgroundLayer{
+  z-index: 1;
+  position: absolute;
+}
+
+.btnHover{
+  opacity: 0.7;
+  border: solid white !important;
+}
+
+.btnHover:hover{
+  opacity: 0.8 !important;
+  border: none !important;
+  background-color: black;
+  border: none;
+}
