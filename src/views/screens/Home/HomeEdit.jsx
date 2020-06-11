@@ -120,40 +120,24 @@ class HomeEdit extends React.Component {
         <div className="container-fluid border border-success">
           {/* Category Section */}
           <h2 className="text-center font-weight-bolder mt-5">BEST SELLER</h2>
-          <div className="row d-flex flex-wrap justify-content-center">
-            <div className="col-lg-4 border">
+          <div className="row justify-content-center p-1 rowH">
+            <div className="col-lg-4 border gbr1">
               <div className="layerButton">
                 <ButtonUI className="btnHover">MEN SHOP</ButtonUI>
               </div>
-
-              <div className="layerBackground">
-                <img
-                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Men.jpg"
-                  alt=""
-                />
-              </div>
+              
             </div>
-            <div className="col-lg-4 border">
+            <div className="col-lg-4 border gbr2">
               <div className="layerButton">
                 <ButtonUI className="btnHover">WOMEN SHOP</ButtonUI>
               </div>
-              <div className="layerBackground">
-                <img
-                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Women.jpg"
-                  alt=""
-                />
-              </div>
+             
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 border gbr3">
               <div className="layerButton">
                 <ButtonUI className="btnHover">SALE ITEMS</ButtonUI>
               </div>
-              <div className="layerBackground">
-                <img
-                  src="https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Accessories.jpg"
-                  alt=""
-                />
-              </div>
+             
             </div>
           </div>
         </div>
@@ -169,43 +153,13 @@ class HomeEdit extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-4 text-center d-flex flex-column align-items-center">
-                <FontAwesomeIcon
-                  icon={faShippingFast}
-                  style={{ fontSize: 70, color: Colors.accentLight }}
-                />
-                <h3 className="font-weight-bolder mt-4">FAST SHIPPING</h3>
-                <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic
-                  impedit facilis nam vitae, accusamus doloribus alias
-                  repellendus veniam voluptates ad doloremque sequi est, at
-                  fugit pariatur quisquam ratione, earum sapiente.
-                </p>
+               
               </div>
               <div className="col-4 text-center d-flex flex-column align-items-center">
-                <FontAwesomeIcon
-                  icon={faMoneyBillWave}
-                  style={{ fontSize: 70, color: Colors.accentLight }}
-                />
-                <h3 className="font-weight-bolder mt-4">100% REFUND</h3>
-                <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic
-                  impedit facilis nam vitae, accusamus doloribus alias
-                  repellendus veniam voluptates ad doloremque sequi est, at
-                  fugit pariatur quisquam ratione, earum sapiente.
-                </p>
+                
               </div>
               <div className="col-4 text-center d-flex flex-column align-items-center">
-                <FontAwesomeIcon
-                  icon={faHeadset}
-                  style={{ fontSize: 70, color: Colors.accentLight }}
-                />
-                <h3 className="font-weight-bolder mt-4">SUPPORT 24/7</h3>
-                <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic
-                  impedit facilis nam vitae, accusamus doloribus alias
-                  repellendus veniam voluptates ad doloremque sequi est, at
-                  fugit pariatur quisquam ratione, earum sapiente.
-                </p>
+              
               </div>
             </div>
           </div>

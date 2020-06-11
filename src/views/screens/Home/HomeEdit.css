@@ -11,20 +11,21 @@
 .carousel-item-home {
   width: 100vw;
   height: 600px;
+
 }
 
 .layerButton{
-  z-index: 2;
-  display: flex;
-  bottom: 290px;
-  right: 190px;
-  position: absolute;
+vertical-align: middle;
+justify-content: center;
+align-items: center;
+ 
 }
 
 
-.backgroundLayer{
+.layerBackground{
   z-index: 1;
   position: absolute;
+  height: 100px;
 }
 
 .btnHover{
@@ -37,4 +38,20 @@
   border: none !important;
   background-color: black;
   border: none;
+}
+
+.rowH{
+  height: 500px;
+}
+.gbr1{
+  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Men.jpg");
+  height: 100%;
+}
+.gbr2{
+  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Women.jpg");
+  height: 100%;
+}
+.gbr3{
+  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Accessories.jpg");
+  height: 100%;
 }
