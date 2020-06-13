@@ -13,6 +13,10 @@ body {
   font-family: Roboto !important;
 }
 
+.fontLogo{
+  font-family: Damion !important;
+}
+
 h1 {
   font-family: Roboto;
   font-weight: bold !important;
@@ -118,7 +122,13 @@ caption {
   letter-spacing: 0.4px;
   text-transform: uppercase;
 }
-
+a.footnote{
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 15px;
+  /* line-height: 30px; */
+  color:white !important;
+}
 .price {
   font-family: Roboto;
   font-style: normal;
@@ -136,3 +146,4 @@ caption {
   line-height: 18px;
   letter-spacing: 0.3px;
 }
+

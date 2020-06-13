@@ -246,13 +246,14 @@ class Navbarku extends React.Component {
         <div className="navbar-container border-bot px-5">
           <Navbar expand="lg" className="p-0">
             <Navbar.Brand href="#home" className="">
-              <div className="logo-text">
+              <div className="logo-text fontLogo">
                 <Link
                   id="oke"
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/"
                 >
-                  NEW STYLE
+                  {/* <img src="https://i.ibb.co/ssCQKFm/white-logo.png" width="100px" alt=""/> */}
+                  NEW S
                 </Link>
               </div>
             </Navbar.Brand>

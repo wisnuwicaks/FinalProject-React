@@ -41,17 +41,9 @@ align-items: center;
 }
 
 .rowH{
-  height: 500px;
+  height: 600px;
 }
-.gbr1{
-  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Men.jpg");
-  height: 100%;
-}
-.gbr2{
-  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Women.jpg");
-  height: 100%;
-}
-.gbr3{
-  background-image: url("https://storage.sg.content-cdn.io/in-resources/ff5c6da1-2d74-4846-96c9-ccd65d766244/Images/userimages/home/second-new/Category-Banner_Accessories.jpg");
-  height: 100%;
+
+.footnoteColor{
+  color: white !important;
 }

@@ -140,7 +140,7 @@ class AuthScreen extends React.Component {
             className="mt-3"
             name="showPasswordRegister"
           />{" "}
-          Show Password
+          Show Password   
           <div className="d-flex justify-content-center">
             <ButtonUI
               type="contained"

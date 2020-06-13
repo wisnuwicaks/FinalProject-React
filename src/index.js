@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
+import './font/Damion-Regular.ttf'
 // Redux imports
 import { Provider } from "react-redux";
 import reducers from "./redux/reducers";
