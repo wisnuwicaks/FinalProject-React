@@ -41,6 +41,7 @@ import {
   logoutHandler,
   onSearchInput,
   cartUpdate,
+  onCategoryChange
 } from "../../../redux/actions";
 import { API_URL } from "../../../constants/API";
 
@@ -263,6 +264,7 @@ class Navbarku extends React.Component {
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/"
+                  onClick={()=>this.props.onCategoryChange("Men")}
                 >
                   MEN
                 </Link>
@@ -406,6 +408,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     search: state.searchInput,
+    
   };
 };
 const mapDispatchToProps = {
@@ -413,5 +416,7 @@ const mapDispatchToProps = {
   onLogout: logoutHandler,
   onSearchInput,
   cartUpdate,
+  onCategoryChange
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Navbarku);

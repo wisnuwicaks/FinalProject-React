@@ -29,7 +29,7 @@ class ProductCard extends React.Component<ProductCardProps> {
         <div 
         className="border w-100"
         style={{backgroundImage:`url(${image})`, borderTopLeftRadius:"8px", borderTopRightRadius:"8px",
-        backgroundSize:"100% 100%", backgroundPosition:"",width:"240px", height:"300px"}}>
+        backgroundSize:"100% 100%", backgroundPosition:"",minWidth:"240px", minHeight:"300px"}}>
      
         {/* <FontAwesomeIcon className="m-2"
         style={{ fontSize: "30px", float:"left"}} icon={faHeart} /> */}

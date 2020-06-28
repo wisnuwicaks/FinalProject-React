@@ -37,7 +37,13 @@ class AllProduct extends React.Component {
   getProductData = () => {
     Axios.get(`${API_URL}/products/allproducts`)
       .then((res) => {
-        this.setState({ productData: res.data });
+        let filterProduct = []
+        res.data.map((val)=>{
+          if (val.categories[0]["category"]=="Women"){
+            filterProduct = [...filterProduct,val]
+          }
+        })
+        this.setState({ productData: filterProduct });
         this.props.wishlistUpdate(this.props.user.id);
       })
       .catch((err) => {
