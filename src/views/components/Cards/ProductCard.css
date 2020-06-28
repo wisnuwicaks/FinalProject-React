@@ -12,8 +12,9 @@
 .product-card {
   border-radius: 8px;
   transition: all ease 150ms;
-  box-sizing: border-box;
-  width: 259px;
+  box-sizing: content-box;
+ 
+  /* width: 150px; */
   border: 1px solid var(--gray-divider);
 }
 

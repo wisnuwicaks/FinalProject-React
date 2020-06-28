@@ -13,25 +13,23 @@ export const loginHandler = (userData) => {
   return (dispatch) => {
     const { username, password } = userData;
 
-    Axios.get(`${API_URL}/users`, {
-      params: {
-        username,
-        password,
-      },
-    })
+    // Axios.get(`${API_URL}/users`, {
+    //   params: {
+    //     username,
+    //     password,
+    //   },
+    // })
+    Axios.post(`${API_URL}/users/login`, userData)
       .then((res) => {
-        if (res.data.length > 0) {
+        console.log(res.data)
+        if (res.data !== null) {
           swal('Login Success','Happy shoping',"success")
           
           dispatch({
             type: ON_LOGIN_SUCCESS,
-            payload: res.data[0],
+            payload: res.data,
           });
-          Axios.get(`${API_URL}/carts`, {
-            params: {
-              userId: res.data[0].id,
-            },
-          })
+          Axios.get(`${API_URL}/carts/user/${res.data.id}`)
             .then((res) => {
               dispatch({
                 type: ON_CART_UPDATE,
@@ -57,16 +55,12 @@ export const loginHandler = (userData) => {
 
 export const userKeepLogin = (userData) => {
   return (dispatch) => {
-    Axios.get(`${API_URL}/users`, {
-      params: {
-        id: userData.id,
-      },
-    })
+    Axios.post(`${API_URL}/users/login`, userData)
       .then((res) => {
-        if (res.data.length > 0) {
+        if (res.data !== null) {
           dispatch({
             type: ON_LOGIN_SUCCESS,
-            payload: res.data[0],
+            payload: res.data,
           });
         } else {
           dispatch({
@@ -140,11 +134,7 @@ export const cookieChecker = () => {
 export const cartUpdate = (userIdNow) => {
   console.log(userIdNow)
   return (dispatch) => {
-      Axios.get(`${API_URL}/carts`, {
-          params: {
-              userId: userIdNow
-          },
-      })
+      Axios.get(`${API_URL}/carts/user/${userIdNow}`)
           .then((res) => {
               dispatch({
                   type: ON_CART_UPDATE,

@@ -41,13 +41,7 @@ class Cart extends React.Component {
   };
 
   getCartData = () => {
-    Axios.get(`${API_URL}/carts`, {
-      params: {
-        userId: this.props.user.id,
-        _expand: "product",
-
-      },
-    })
+    Axios.get(`${API_URL}/carts/user/${this.props.user.id}`)
       .then((res) => {
         console.log(res.data);
         this.setState({ cartData: res.data });

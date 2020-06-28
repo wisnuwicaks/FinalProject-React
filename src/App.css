@@ -67,6 +67,15 @@ h6 {
   letter-spacing: 0.1px;
 }
 
+h7 {
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold !important;
+  font-size: 12px;
+  line-height: 5px;
+  letter-spacing: 0.1px;
+}
+
 .subtitle-lg {
   font-family: Roboto;
   font-style: normal;
