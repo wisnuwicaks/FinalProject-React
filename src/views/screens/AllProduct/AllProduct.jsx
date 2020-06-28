@@ -14,7 +14,7 @@ import {
   faKissWinkHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { Dropdown, Form, Row, Col } from "react-bootstrap";
+import { Dropdown, Form, Row, Col, FormControl, Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { cartUpdate, wishlistUpdate } from "../../../redux/actions";
 import swal from "sweetalert";
@@ -144,20 +144,12 @@ class AllProduct extends React.Component {
     return (
       <div className="container-fluid bg-color border">
         <div className="row">
-          <div className="col-2 border border-primary">
-            <caption> Filter: </caption>
-            <div className="row border">
-              <div className="d-flex">
-                <h7> Harga minimum:</h7>
-                <Form.Control className="ml-2 w-50 h-50"></Form.Control>
-              </div>
-            </div>
-            <div className="row">
-              <div className="d-flex">
-                <h7> Harga maximum:</h7>
-                <Form.Control className="ml-2 w-50 h-50"></Form.Control>
-              </div>
-            </div>
+          <div className="col-2 border border-primary p-2">
+            <caption className="border w-100"> Filter Price </caption>
+            
+              <FormControl type="number" placeholder="min price" className="inputCustom" style={{height:"25px"}}></FormControl>
+              <FormControl type="number" placeholder="max price" className="inputCustom mt-1" style={{height:"25px"}}></FormControl>
+              <Button size="sm" className="btn btn-danger mt-2">Apply</Button>
           </div>
           <div className="col-10">
             <div className="container-fluid border border-primary">
@@ -178,7 +170,7 @@ class AllProduct extends React.Component {
             </Dropdown> */}
                 <caption className="pr-2"> Sorting : </caption>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Control as="select">
+                  <Form.Control size="sm" as="select">
                     <option>Termurah-Termahal</option>
                     <option>Termahal-Termurah</option>
                     <option>Terlaris</option>

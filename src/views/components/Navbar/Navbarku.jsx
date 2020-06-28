@@ -300,9 +300,12 @@ class Navbarku extends React.Component {
                 <Form inline className="">
                   <InputGroup className="w-100">
                     <FormControl
+                    textDecoration="inherit"
+                      className=""
                       placeholder="Find your product"
                       aria-label="search  "
                       aria-describedby="basic-addon1"
+                     
                     />
                     <InputGroup.Append>
                       <Button
