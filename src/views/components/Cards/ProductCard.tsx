@@ -48,7 +48,12 @@ class ProductCard extends React.Component<ProductCardProps> {
           <p className="small">Size Available :</p>
         </div>
         <div className="d-flex flex-row align-items-center justify-content-between mt-2">
-        <p className="small">{size}</p>
+          {size==""?
+          <p className="small">All Size</p>
+          :
+          <p className="small">{size}</p>
+        }
+        
         </div>
         <div className="row justify-content-center pt-2">
         <ButtonUI

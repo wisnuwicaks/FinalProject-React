@@ -16,7 +16,6 @@ class ProductDetails extends React.Component {
       productName: "",
       price: 0,
       size: "",
-      category: "",
       id: 0,
     },
     selectedSize: "",
@@ -73,22 +72,19 @@ class ProductDetails extends React.Component {
   };
 
   addToCartHandler = () => {
- 
     if (this.props.user.id < 1) {
       swal(
         "Sorry :(",
         "You have not login yet, please login before add your item",
         "error"
       );
-    } 
-    else if(this.state.selectedSize==false){
+    } else if (this.state.selectedSize == false) {
       swal(
         "Select Size First",
         "Please select items size to add to cart",
         "error"
       );
-    }
-    else {
+    } else {
       Axios.get(`${API_URL}/carts`, {
         params: {
           userId: this.props.user.id,
@@ -97,16 +93,18 @@ class ProductDetails extends React.Component {
         console.log(res);
         this.setState({ cartDataNow: res.data });
         let cekDuplicate = this.state.cartDataNow.findIndex((val) => {
-          
-          return val.productId == this.state.productData.id && val.size == this.state.selectedSize;
+          return (
+            val.productId == this.state.productData.id &&
+            val.size == this.state.selectedSize
+          );
         });
-        alert(cekDuplicate)
+        alert(cekDuplicate);
         if (cekDuplicate == -1) {
           console.log(this.state.productData.id);
           Axios.post(`${API_URL}/carts`, {
             userId: this.props.user.id,
             productId: this.state.productData.id,
-            size : this.state.selectedSize,
+            size: this.state.selectedSize,
             quantity: 1,
           })
             .then((res) => {
@@ -128,10 +126,11 @@ class ProductDetails extends React.Component {
             "success"
           );
           Axios.get(
-            `${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`,{
-              params:{
-                size:this.state.selectedSize
-              }
+            `${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`,
+            {
+              params: {
+                size: this.state.selectedSize,
+              },
             }
           )
             .then((resSameData) => {
@@ -140,7 +139,7 @@ class ProductDetails extends React.Component {
               Axios.put(`${API_URL}/carts/${data.id}`, {
                 userId: this.state.cartDataNow[cekDuplicate].userId,
                 productId: this.state.cartDataNow[cekDuplicate].productId,
-                size:this.state.cartDataNow[cekDuplicate].size,
+                size: this.state.cartDataNow[cekDuplicate].size,
                 quantity: this.state.cartDataNow[cekDuplicate].quantity + 1,
                 id: this.state.cartDataNow[cekDuplicate].id,
               })
@@ -160,42 +159,41 @@ class ProductDetails extends React.Component {
   };
 
   componentDidMount() {
-   
-    this.getProductData()
-
+    this.getProductData();
   }
 
-  getProductData = () =>{
+  getProductData = () => {
     const { productData } = this.state;
     Axios.get(`${API_URL}/products/${this.props.match.params.productId}`)
-    .then((res) => {
-      this.setState({ productData: { ...productData, ...res.data } });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .then((res) => {
+        this.setState({ productData: { ...productData, ...res.data } });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   selectSize = (sizePick) => {
     this.setState({ selectedSize: sizePick });
-    this.renderSize(sizePick)
-    this.getProductData()
+    this.renderSize(sizePick);
+    this.getProductData();
   };
 
   renderSize = () => {
     let arr = this.state.productData.size.split(",");
     return arr.map((val) => {
-      if (this.state.selectedSize && val===this.state.selectedSize) {
+      if (this.state.selectedSize && val === this.state.selectedSize) {
         return (
           <>
-            <SizeBoxBtn className="m-1 active" onClick={() => this.selectSize(val)}>
+            <SizeBoxBtn
+              className="m-1 active"
+              onClick={() => this.selectSize(val)}
+            >
               {val}
             </SizeBoxBtn>
           </>
         );
-      }
-      else{
- 
+      } else {
         return (
           <>
             <SizeBoxBtn className="m-1" onClick={() => this.selectSize(val)}>
@@ -204,7 +202,6 @@ class ProductDetails extends React.Component {
           </>
         );
       }
-    
     });
   };
 
@@ -234,18 +231,27 @@ class ProductDetails extends React.Component {
           </div>
           <div className="col-6 border text-nowrap">
             <h3> {productName}</h3>
-            <div style={{color:"red"}}>
-            <h4>
-              {new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-              }).format(price)}
-            </h4>
+            <div style={{ color: "red" }}>
+              <h4>
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                }).format(price)}
+              </h4>
             </div>
-            <div style={{color:"grey"}}>
-            <h6>Selected Size : {this.state.selectedSize}</h6>
+            <div style={{ color: "grey" }}>
+              {this.state.productData.size == "" ? (
+                <h6>Selected Size : All Size</h6>
+              ) : (
+                <h6>Selected Size : {this.state.selectedSize}</h6>
+              )}
             </div>
-            <div className="d-flex border">{this.renderSize()}</div>
+            {this.state.productData.size == "" ? (
+             null
+              ) : (
+                <div className="d-flex border">{this.renderSize()}</div>
+              )}
+          
 
             <div className="d-flex mt-4">
               <ButtonUI onClick={this.addToCartHandler}>Add To Cart</ButtonUI>

@@ -37,10 +37,14 @@ class AllProduct extends React.Component {
   }
 
   componentDidUpdate(){
+
     if(this.state.categoryNow !==this.props.category.categoryActive){
     this.getProductData()
     this.setState({categoryNow:this.props.category.categoryActive})
+    alert("Update Category")
     }
+  
+   
   }
 
   getProductData = () => {
