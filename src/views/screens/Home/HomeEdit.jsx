@@ -145,7 +145,7 @@ class HomeEdit extends React.Component {
               style={{ backgroundImage: `url(${pic1})` }}
             >
               <div className="layerButton">
-                <ButtonUI className="btnHover">MEN SHOP</ButtonUI>
+                <ButtonUI className="btnHover">MEN SHOP </ButtonUI>
               </div>
             </div>
             <div
@@ -178,7 +178,11 @@ class HomeEdit extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-3 d-flex flex-column">
-                <img src="https://i.ibb.co/ssCQKFm/white-logo.png" width="250px" alt="" />
+                <img
+                  src="https://i.ibb.co/ssCQKFm/white-logo.png"
+                  width="250px"
+                  alt=""
+                />
               </div>
               <div className="col-3 d-flex flex-column pl-5 ">
                 <h4>SERVICE</h4>
@@ -254,6 +258,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     search: state.searchInput,
+    category: state.categoryActive,
   };
 };
 

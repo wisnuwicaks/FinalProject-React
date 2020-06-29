@@ -6,5 +6,5 @@ import categoryActive from "./categoryreducer";
 export default combineReducers({
   user: userReducer,
   searchInput : searchReducer,
-  category : categoryActive
+  categoryActive
 });

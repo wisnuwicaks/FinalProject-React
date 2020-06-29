@@ -5,7 +5,7 @@ const {
 } = categoryTypes;
 
 const init_state = {
-  categoryActive : 'Men',
+  categoryActive : "",
 };
 
 export default (state = init_state, action) => {

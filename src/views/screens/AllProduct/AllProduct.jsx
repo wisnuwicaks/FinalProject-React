@@ -28,22 +28,37 @@ class AllProduct extends React.Component {
     liked: false,
     productData: [],
     wishtlistProductId: [],
+    categoryNow :""
   };
 
   componentDidMount() {
     this.getProductData();
+    this.setState({categoryNow:this.props.category.categoryActive})
+  }
+
+  componentDidUpdate(){
+    if(this.state.categoryNow !==this.props.category.categoryActive){
+    this.getProductData()
+    this.setState({categoryNow:this.props.category.categoryActive})
+    }
   }
 
   getProductData = () => {
     Axios.get(`${API_URL}/products/allproducts`)
       .then((res) => {
         let filterProduct = []
-        res.data.map((val)=>{
-          if (val.categories[0]["category"]=="Women"){
-            filterProduct = [...filterProduct,val]
-          }
-        })
-        this.setState({ productData: filterProduct });
+        if(!this.props.category.categoryActive){
+          this.setState({productData:res.data})
+        }
+        else{
+          res.data.map((val)=>{
+            if (val.categories[0]["category"]==this.props.category.categoryActive){
+              filterProduct = [...filterProduct,val]
+            }
+          })
+          this.setState({productData:filterProduct})
+        }
+        
         this.props.wishlistUpdate(this.props.user.id);
       })
       .catch((err) => {
@@ -197,6 +212,7 @@ class AllProduct extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    category : state.categoryActive
   };
 };
 

@@ -263,17 +263,18 @@ class Navbarku extends React.Component {
               <div className="cat-text">
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
-                  to="/"
+                  to="/allproduct"
                   onClick={()=>this.props.onCategoryChange("Men")}
                 >
                   MEN
                 </Link>
               </div>
 
-              <div className="cat-text">
+              <div className="cat-text" onClick={()=>this.props.onCategoryChange("Women")}>
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
-                  to="/"
+                  to="/allproduct"
+                  
                 >
                   WOMEN 
                 </Link>
@@ -283,6 +284,7 @@ class Navbarku extends React.Component {
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/allproduct"
+                  onClick={()=>this.props.onCategoryChange("")}
                 >
                   ALL PRODUCT
                 </Link>
