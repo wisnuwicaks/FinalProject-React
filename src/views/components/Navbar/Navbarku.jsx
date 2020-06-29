@@ -279,6 +279,16 @@ class Navbarku extends React.Component {
                   WOMEN 
                 </Link>
               </div>
+              
+              <div className="cat-text" onClick={()=>this.props.onCategoryChange("Accessories")}>
+                <Link
+                  style={{ textDecoration: "none", color: "inherit" }}
+                  to="/allproduct"
+                  
+                >
+                  ACCESSORIES 
+                </Link>
+              </div>
 
               <div className="cat-text">
                 <Link
@@ -300,7 +310,7 @@ class Navbarku extends React.Component {
 
           
 
-              <div className="col-8">
+              <div className="col">
                 <Form inline className="">
                   <InputGroup className="w-100">
                     <FormControl
@@ -329,13 +339,13 @@ class Navbarku extends React.Component {
 
               <div style={{ flex: "0" }} className="">
                 <Link
-                  className="d-flex flex-column justify-content-center pl-2"
+                  className="d-flex flex-column justify-content-center"
                   to="/cart"
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div
-                    style={{ justifyContent: "flex-end" }}
-                    className="d-flex"
+                    // style={{ justifyContent: "" }}
+                    // className="d-flex"
                   >
                     <CircleBg>
                       <small
@@ -346,14 +356,14 @@ class Navbarku extends React.Component {
                           fontSize: "15px",
                         }}
                       >
-                        <div className="p-1">
+                        <div className="">
                           {this.props.user.cartItemsCount}
                         </div>
                       </small>
                     </CircleBg>
                   </div>
                   <FontAwesomeIcon
-                    className="mr-2"
+                    className="border border-primary"
                     icon={faCartPlus}
                     style={{ fontSize: 30, color: "white" }}
                   />

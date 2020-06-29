@@ -20,6 +20,9 @@ import {
   faHeadset,
 } from "@fortawesome/free-solid-svg-icons";
 import "./HomeEdit.css";
+import {
+  onCategoryChange
+} from "../../../redux/actions";
 
 import ProductCard from "../../components/Cards/ProductCard";
 import Carousel1 from "../../../assets/images/Carousel/1.jpg";
@@ -145,7 +148,9 @@ class HomeEdit extends React.Component {
               style={{ backgroundImage: `url(${pic1})` }}
             >
               <div className="layerButton">
-                <ButtonUI className="btnHover">MEN SHOP </ButtonUI>
+                <Link to="/allproduct">
+                <ButtonUI className="btnHover" onClick={()=>this.props.onCategoryChange("Men")}>MEN SHOP </ButtonUI>
+                </Link>
               </div>
             </div>
             <div
@@ -153,7 +158,9 @@ class HomeEdit extends React.Component {
               style={{ backgroundImage: `url(${pic2})` }}
             >
               <div className="layerButton">
-                <ButtonUI className="btnHover">WOMEN SHOP</ButtonUI>
+              <Link to="/allproduct">
+                <ButtonUI className="btnHover" onClick={()=>this.props.onCategoryChange("Women")}>WOMEN SHOP</ButtonUI>
+                </Link>
               </div>
             </div>
             <div
@@ -262,4 +269,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(HomeEdit);
+const mapDispatchToProps = {
+  onCategoryChange
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeEdit);
+
