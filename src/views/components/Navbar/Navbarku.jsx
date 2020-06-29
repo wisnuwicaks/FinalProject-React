@@ -337,7 +337,7 @@ class Navbarku extends React.Component {
                 </Form>
               </div>
 
-              <div style={{ flex: "0" }} className="">
+              <div style={{ flex: "0" }} className="p-1">
                 <Link
                   className="d-flex flex-column justify-content-center"
                   to="/cart"
@@ -356,7 +356,7 @@ class Navbarku extends React.Component {
                           fontSize: "15px",
                         }}
                       >
-                        <div className="">
+                        <div className="p-1">
                           {this.props.user.cartItemsCount}
                         </div>
                       </small>
