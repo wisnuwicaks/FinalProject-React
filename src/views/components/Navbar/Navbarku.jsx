@@ -37,11 +37,12 @@ import TextField from "../TextField/TextField";
 import "./Navbarku.css";
 import ButtonUI from "../Button/Button";
 import {
+  registerHandler,
   loginHandler,
   logoutHandler,
   onSearchInput,
   cartUpdate,
-  onCategoryChange
+  onCategoryChange,
 } from "../../../redux/actions";
 import { API_URL } from "../../../constants/API";
 
@@ -56,6 +57,14 @@ class Navbarku extends React.Component {
       password: "",
       showPassword: false,
     },
+    registerForm: {
+      fullName: "",
+      email: "",
+      username: "",
+      password: "",
+      showPassword: false,
+    },
+    modalActive: "Login",
     searchBarIsFocused: false,
     searchBarInput: "",
     dropdownOpen: false,
@@ -66,7 +75,6 @@ class Navbarku extends React.Component {
     if (this.props.user.id) {
       const cookie = new Cookies();
       cookie.set("authData", JSON.stringify(this.props.user), { path: "/" });
-      
     }
   }
   searcBarInputHandler = (e) => {
@@ -78,24 +86,37 @@ class Navbarku extends React.Component {
 
   inputHandler = (e, field, form) => {
     const { value } = e.target;
-    
+
     this.setState({
       [form]: {
         ...this.state[form],
         [field]: value,
       },
-    })
+    });
   };
   loginBtnHandler = () => {
     const { username, password } = this.state.loginForm;
-    let newUser = {
+    let newUserLogin = {
       username,
       password,
     };
 
-    this.props.onLogin(newUser);
-    this.setState({modalOpen:!this.state.modalOpen})
+    this.props.onLogin(newUserLogin);
+    this.setState({ modalOpen: !this.state.modalOpen });
   };
+
+  registerBtnHandler = () =>{
+    const { fullName,email,username,password } = this.state.registerForm;
+    let newUserRegis = {
+      fullName,
+      email,
+      username,
+      password,
+    };
+
+    this.props.onRegister(newUserRegis);
+    this.setState({ modalOpen: !this.state.modalOpen });
+  }
 
   onFocus = () => {
     this.setState({ searchBarIsFocused: true });
@@ -107,16 +128,16 @@ class Navbarku extends React.Component {
 
   logoutBtnHandler = () => {
     this.props.onLogout();
-   
     return <Redirect to="/" />;
-    alert("asds")
+    
   };
 
   toggleDropdown = () => {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
   };
 
-  toggleModal = () => {
+  toggleModal = (whichActive) => {
+    this.setState({ modalActive: whichActive });
     this.setState({ modalOpen: !this.state.modalOpen });
   };
 
@@ -179,13 +200,13 @@ class Navbarku extends React.Component {
 
                         <DropdownItem className="text-center ">
                           <Link to="/">
-                          <Button
-                            type="button"
-                            className="btn btn-danger"
-                            onClick={()=>this.logoutBtnHandler()}
-                          >
-                            Logout
-                          </Button>
+                            <Button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={() => this.logoutBtnHandler()}
+                            >
+                              Logout
+                            </Button>
                           </Link>
                         </DropdownItem>
                       </>
@@ -208,15 +229,15 @@ class Navbarku extends React.Component {
                             Wishlist
                           </Link>
                         </DropdownItem>
-                        
+
                         <DropdownItem
-                          onClick={()=>this.logoutBtnHandler()}
+                          onClick={() => this.logoutBtnHandler()}
                           className="text-center "
                         >
                           <Link to="/">
-                          <Button type="button" className="btn btn-danger">
-                            Logout
-                          </Button>
+                            <Button type="button" className="btn btn-danger">
+                              Logout
+                            </Button>
                           </Link>
                         </DropdownItem>
                       </>
@@ -232,12 +253,19 @@ class Navbarku extends React.Component {
                   style={{ fontSize: 20, color: "white" }}
                 />
 
-                <label onClick={() => this.toggleModal()} className="hoverLink">
+                <label
+                  onClick={() => this.toggleModal("Login")}
+                  className="hoverLink"
+                >
                   Login
                 </label>
 
                 {" | "}
-                <Link id="oke" style={{ color: "inherit" }} to="/auth">
+                <Link
+                  id="oke"
+                  style={{ color: "inherit" }}
+                  onClick={() => this.toggleModal("Register")}
+                >
                   Register
                 </Link>
               </>
@@ -264,29 +292,33 @@ class Navbarku extends React.Component {
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/allproduct"
-                  onClick={()=>this.props.onCategoryChange("Men")}
+                  onClick={() => this.props.onCategoryChange("Men")}
                 >
                   MEN
                 </Link>
               </div>
 
-              <div className="cat-text" onClick={()=>this.props.onCategoryChange("Women")}>
+              <div
+                className="cat-text"
+                onClick={() => this.props.onCategoryChange("Women")}
+              >
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/allproduct"
-                  
                 >
-                  WOMEN 
+                  WOMEN
                 </Link>
               </div>
-              
-              <div className="cat-text" onClick={()=>this.props.onCategoryChange("Accessories")}>
+
+              <div
+                className="cat-text"
+                onClick={() => this.props.onCategoryChange("Accessories")}
+              >
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/allproduct"
-                  
                 >
-                  ACCESSORIES 
+                  ACCESSORIES
                 </Link>
               </div>
 
@@ -294,7 +326,7 @@ class Navbarku extends React.Component {
                 <Link
                   style={{ textDecoration: "none", color: "inherit" }}
                   to="/allproduct"
-                  onClick={()=>this.props.onCategoryChange("")}
+                  onClick={() => this.props.onCategoryChange("")}
                 >
                   ALL PRODUCT
                 </Link>
@@ -308,18 +340,15 @@ class Navbarku extends React.Component {
                 </Link>
               </div>
 
-          
-
               <div className="col">
                 <Form inline className="">
                   <InputGroup className="w-100">
                     <FormControl
-                    textDecoration="inherit"
+                      textDecoration="inherit"
                       className=""
                       placeholder="Find your product"
                       aria-label="search  "
                       aria-describedby="basic-addon1"
-                     
                     />
                     <InputGroup.Append>
                       <Button
@@ -344,8 +373,8 @@ class Navbarku extends React.Component {
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <div
-                    // style={{ justifyContent: "" }}
-                    // className="d-flex"
+                  // style={{ justifyContent: "" }}
+                  // className="d-flex"
                   >
                     <CircleBg>
                       <small
@@ -363,7 +392,7 @@ class Navbarku extends React.Component {
                     </CircleBg>
                   </div>
                   <FontAwesomeIcon
-                    className="border border-primary"
+                    className=""
                     icon={faCartPlus}
                     style={{ fontSize: 30, color: "white" }}
                   />
@@ -381,36 +410,117 @@ class Navbarku extends React.Component {
         >
           <ModalHeader toggle={this.toggleModal}>
             <div className="text-center justify-content-center">
-              <h3>Login</h3>
+              {this.state.modalActive=="Login"?
+              <h3>Login</h3> 
+              :
+              <h3>Register</h3> 
+            }
+              
             </div>
           </ModalHeader>
-          <ModalBody>
-            <div className="row">
-              <Form className="w-100 px-4">
-                <Form.Group>
-                  <Form.Label>Email/Username</Form.Label>
-                  <Form.Control 
-                  value={this.state.loginForm.username}
-                  onChange={(e) => this.inputHandler(e, "username", "loginForm")}
-                  placeholder="Enter email or username" />
-                </Form.Group>
+          {this.state.modalActive == "Login" ? (
+            <ModalBody>
+              <div className="row">
+                <Form className="w-100 px-4">
+                  <Form.Group>
+                    <Form.Label>Email/Username</Form.Label>
+                    <Form.Control
+                      value={this.state.loginForm.username}
+                      onChange={(e) =>
+                        this.inputHandler(e, "username", "loginForm")
+                      }
+                      placeholder="Enter email or username"
+                    />
+                  </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control 
-                  value={this.state.loginForm.password}
-                  onChange={(e) => this.inputHandler(e, "password", "loginForm")}
-                  placeholder=" Enter password" />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Check type="checkbox" label="Show Password" />
-                </Form.Group>
-              </Form>
-              <div className="col-12 text-center" >
-                <Button onClick={this.loginBtnHandler} variant="danger" className="btnStrapCustom">Login</Button>
+                  <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      value={this.state.loginForm.password}
+                      onChange={(e) =>
+                        this.inputHandler(e, "password", "loginForm")
+                      }
+                      placeholder=" Enter password"
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Check type="checkbox" label="Show Password" />
+                  </Form.Group>
+                </Form>
+                <div className="col-12 text-center">
+                  <Button
+                    onClick={this.loginBtnHandler}
+                    variant="danger"
+                    className="btnStrapCustom"
+                  >
+                    Login
+                  </Button>
                 </div>
-            </div>
-          </ModalBody>
+              </div>
+            </ModalBody>
+          ) : (
+            <ModalBody>
+              <div className="row">
+                <Form className="w-100 px-4">
+                  <Form.Group>
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control
+                      value={this.state.registerForm.fullName}
+                      onChange={(e) =>
+                        this.inputHandler(e, "fullName", "registerForm")
+                      }
+                      placeholder="Enter Full Name"
+                    />
+                  </Form.Group>
+
+                  <Form.Group>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      value={this.state.registerForm.email}
+                      onChange={(e) =>
+                        this.inputHandler(e, "email", "registerForm")
+                      }
+                      placeholder="Enter email"
+                    />
+                  </Form.Group>
+
+                  <Form.Group>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      value={this.state.registerForm.username}
+                      onChange={(e) =>
+                        this.inputHandler(e, "username", "registerForm")
+                      }
+                      placeholder="Enter username"
+                    />
+                  </Form.Group>
+
+                  <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      value={this.state.registerForm.password}
+                      onChange={(e) =>
+                        this.inputHandler(e, "password", "registerForm")
+                      }
+                      placeholder=" Enter password"
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Check type="checkbox" label="Show Password" />
+                  </Form.Group>
+                </Form>
+                <div className="col-12 text-center">
+                  <Button
+                    onClick={this.registerBtnHandler}
+                    variant="danger"
+                    className="btnStrapCustom"
+                  >
+                    Register
+                  </Button>
+                </div>
+              </div>
+            </ModalBody>
+          )}
         </Modal>
       </div>
     );
@@ -420,15 +530,15 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     search: state.searchInput,
-    
   };
 };
 const mapDispatchToProps = {
-  onLogin : loginHandler,
+  onLogin: loginHandler,
+  onRegister: registerHandler,
   onLogout: logoutHandler,
   onSearchInput,
   cartUpdate,
-  onCategoryChange
+  onCategoryChange,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbarku);

@@ -85,19 +85,17 @@ export const logoutHandler = () => {
 
 export const registerHandler = (userData) => {
   return (dispatch) => {
-    Axios.get(`${API_URL}/users`, {
-      params: {
-        username: userData.username,
-      },
-    })
+    Axios.post(`${API_URL}/users/getuser`, userData)
       .then((res) => {
-        if (res.data.length > 0) {
+        console.log(res.data);
+        if (res == "notoke") {
+          swal('Registration Failed','Sorry email already registered',"error")
           dispatch({
             type: ON_REGISTER_FAIL,
-            payload: "Username already used",
+            payload: "Email already used",
           });
         } else {
-          Axios.post(`${API_URL}/users`, { ...userData, role: "user" })
+          Axios.post(`${API_URL}/users/register`, userData)
             .then((res) => {
               swal('Regitration Success','Please Sign-in to buy',"success")
               console.log(userData);
@@ -112,6 +110,7 @@ export const registerHandler = (userData) => {
         }
       })
       .catch((err) => {
+        alert("error")
         console.log(err);
       });
   };
