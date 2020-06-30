@@ -105,8 +105,8 @@ class Navbarku extends React.Component {
     this.setState({ modalOpen: !this.state.modalOpen });
   };
 
-  registerBtnHandler = () =>{
-    const { fullName,email,username,password } = this.state.registerForm;
+  registerBtnHandler = () => {
+    const { fullName, email, username, password } = this.state.registerForm;
     let newUserRegis = {
       fullName,
       email,
@@ -116,7 +116,7 @@ class Navbarku extends React.Component {
 
     this.props.onRegister(newUserRegis);
     this.setState({ modalOpen: !this.state.modalOpen });
-  }
+  };
 
   onFocus = () => {
     this.setState({ searchBarIsFocused: true });
@@ -129,8 +129,9 @@ class Navbarku extends React.Component {
   logoutBtnHandler = () => {
     this.props.onLogout();
     return <Redirect to="/" />;
-    
   };
+
+  forgetPassword = () => {};
 
   toggleDropdown = () => {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
@@ -153,11 +154,12 @@ class Navbarku extends React.Component {
                   isOpen={this.state.dropdownOpen}
                 >
                   <DropdownToggle tag="div" className="d-flex" color="white">
-                    <FontAwesomeIcon
-                      icon={faUserCircle}
-                      style={{ fontSize: 20 }}
+                    <img
+                      src={this.props.user.profilePicture}
+                      width="25px"
+                      alt=""
                     />
-                    <p className="medium ml-3 mr-4">
+                    <p className="medium ml-1 mr-4">
                       {this.props.user.username}
                     </p>
                   </DropdownToggle>
@@ -212,6 +214,14 @@ class Navbarku extends React.Component {
                       </>
                     ) : (
                       <>
+                        <DropdownItem>
+                          <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to="/userprofile"
+                          >
+                            User Profile
+                          </Link>
+                        </DropdownItem>
                         <DropdownItem>
                           <Link
                             style={{ color: "inherit", textDecoration: "none" }}
@@ -410,12 +420,11 @@ class Navbarku extends React.Component {
         >
           <ModalHeader toggle={this.toggleModal}>
             <div className="text-center justify-content-center">
-              {this.state.modalActive=="Login"?
-              <h3>Login</h3> 
-              :
-              <h3>Register</h3> 
-            }
-              
+              {this.state.modalActive == "Login" ? (
+                <h3>Login</h3>
+              ) : (
+                <h3>Register</h3>
+              )}
             </div>
           </ModalHeader>
           {this.state.modalActive == "Login" ? (
@@ -445,6 +454,11 @@ class Navbarku extends React.Component {
                   </Form.Group>
                   <Form.Group>
                     <Form.Check type="checkbox" label="Show Password" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Link onClick={() => this.forgetPassword()}>
+                      Forget Password
+                    </Link>
                   </Form.Group>
                 </Form>
                 <div className="col-12 text-center">

@@ -26,13 +26,14 @@ const init_state = {
 export default (state = init_state, action) => {
   switch (action.type) {
     case ON_LOGIN_SUCCESS:
-      const { username,email, fullName, role, id,password } = action.payload;
+      const { username,email, fullName, role,id,password,profilePicture } = action.payload;
       return {
         ...state,
         username,
         password,
         email,
         fullName,
+        profilePicture,
         role,
         id,
         cookieChecked: true,

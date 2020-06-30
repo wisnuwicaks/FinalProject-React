@@ -13,6 +13,8 @@ import HomeEdit from "./views/screens/Home/HomeEdit";
 import Navbarku from "./views/components/Navbar/Navbarku";
 import Navbar1 from "./views/components/Navbar/Navbar1";
 import AuthScreen from "./views/screens/Auth/AuthScreen";
+import UserProfile from "./views/screens/UserProfile/UserProfile";
+
 import ProductDetails from "./views/screens/ProductDetails/ProductDetails";
 import AdminDashboard from "./views/screens/Admin/AdminDashboard";
 import AllProduct from "./views/screens/AllProduct/AllProduct";
@@ -62,6 +64,8 @@ class App extends React.Component {
           <Route exact path="/wishlist" component={Wishlist} />
           <Route exact path="/allproduct" component={AllProduct} />
           <Route exact path="/history" component={History} />
+        
+
         </>
       );
     } else {
@@ -86,6 +90,7 @@ class App extends React.Component {
             <Route exact path="/allproduct" component={AllProduct} />
             <Route exact path="/history" component={History} />
             <Route exact path="/test" component={Test} />
+            <Route exact path="/userprofile" component={UserProfile} />
             <Route exact path="/navbar1" component={Navbar1} />
             {this.renderAdminRoutes()}
             {this.userRoutes()}

@@ -4,8 +4,16 @@ import Cookie from "universal-cookie";
 import userTypes from "../types/user";
 import swal from "sweetalert";
 
-const { ON_LOGIN_FAIL, ON_LOGIN_SUCCESS,ON_REGISTER_SUCCESS,ON_REGISTER_FAIL, 
-  ON_LOGOUT_SUCCESS,ITEMS_ON_TABLE_CHANGE, ON_CART_UPDATE, ON_WISHLIST_UPDATE } = userTypes;
+const {
+  ON_LOGIN_FAIL,
+  ON_LOGIN_SUCCESS,
+  ON_REGISTER_SUCCESS,
+  ON_REGISTER_FAIL,
+  ON_LOGOUT_SUCCESS,
+  ITEMS_ON_TABLE_CHANGE,
+  ON_CART_UPDATE,
+  ON_WISHLIST_UPDATE,
+} = userTypes;
 
 const cookieObj = new Cookie();
 
@@ -21,10 +29,10 @@ export const loginHandler = (userData) => {
     // })
     Axios.post(`${API_URL}/users/login`, userData)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         if (res.data !== null) {
-          swal('Login Success','Happy shoping',"success")
-          
+          swal("Login Success", "Happy shoping", "success");
+
           dispatch({
             type: ON_LOGIN_SUCCESS,
             payload: res.data,
@@ -40,7 +48,7 @@ export const loginHandler = (userData) => {
               console.log(err);
             });
         } else {
-          swal('Login Failed','Username or password was wrong',"error")
+          swal("Login Failed", "Username or password was wrong", "error");
           dispatch({
             type: ON_LOGIN_FAIL,
             payload: "Username or password was wrong",
@@ -76,7 +84,7 @@ export const userKeepLogin = (userData) => {
 };
 
 export const logoutHandler = () => {
-  alert("log")
+  alert("log");
   cookieObj.remove("authData", { path: "/" });
   return {
     type: ON_LOGOUT_SUCCESS,
@@ -85,32 +93,57 @@ export const logoutHandler = () => {
 
 export const registerHandler = (userData) => {
   return (dispatch) => {
-    Axios.post(`${API_URL}/users/getuser`, userData)
+    Axios.post(`${API_URL}/users/getemail`, userData)
       .then((res) => {
         console.log(res.data);
-        if (res == "notoke") {
-          swal('Registration Failed','Sorry email already registered',"error")
-          dispatch({
-            type: ON_REGISTER_FAIL,
-            payload: "Email already used",
-          });
-        } else {
-          Axios.post(`${API_URL}/users/register`, userData)
+        if (res.data.length <= 0) {
+          // dispatch({
+          //   type: ON_REGISTER_FAIL,
+          //   payload: "Email already used",
+          // });
+          Axios.post(`${API_URL}/users/getusername`, userData)
             .then((res) => {
-              swal('Regitration Success','Please Sign-in to buy',"success")
-              console.log(userData);
-              dispatch({
-                type: ON_REGISTER_SUCCESS,
-                payload: userData,
-              });
+              if (res.data.length <= 0) {
+                Axios.post(`${API_URL}/users/register`, userData)
+                  .then((res) => {
+                    swal(
+                      "Regitration Success",
+                      "Please Sign-in to buy",
+                      "success"
+                    );
+                    console.log(userData);
+                    dispatch({
+                      type: ON_REGISTER_SUCCESS,
+                      payload: userData,
+                    });
+                  })
+                  .catch((err) => {
+                    swal(
+                      "Regitration Failed",
+                      "Email not valid",
+                      "error"
+                    );
+                    console.log(err);
+                  });
+              } else {
+                swal(
+                  "Registration Failed",
+                  "Sorry username already registered",
+                  "error"
+                );
+              }
             })
-            .catch((err) => {
-              console.log(err);
-            });
+            .catch();
+        } else {
+          swal(
+            "Registration Failed",
+            "Sorry email already registered",
+            "error"
+          );
         }
       })
       .catch((err) => {
-        alert("error")
+        alert("error");
         console.log(err);
       });
   };
@@ -129,43 +162,42 @@ export const cookieChecker = () => {
 //   };
 // };
 
-
 export const cartUpdate = (userIdNow) => {
-  console.log(userIdNow)
+  console.log(userIdNow);
   return (dispatch) => {
-      Axios.get(`${API_URL}/carts/user/${userIdNow}`)
-          .then((res) => {
-              dispatch({
-                  type: ON_CART_UPDATE,
-                  payload: res.data.length,
-              });
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-  }
+    Axios.get(`${API_URL}/carts/user/${userIdNow}`)
+      .then((res) => {
+        dispatch({
+          type: ON_CART_UPDATE,
+          payload: res.data.length,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
 export const wishlistUpdate = (userId) => {
   return (dispatch) => {
-      Axios.get(`${API_URL}/wishlist`, {
-          params: {
-              userId: userId
-          },
+    Axios.get(`${API_URL}/wishlist`, {
+      params: {
+        userId: userId,
+      },
+    })
+      .then((res) => {
+        const { data } = res;
+        let productIdData = [];
+        data.forEach((val) => {
+          productIdData.push(val.productId);
+        });
+        dispatch({
+          type: ON_WISHLIST_UPDATE,
+          payload: productIdData,
+        });
       })
-          .then((res) => {
-              const {data} = res
-              let productIdData = []
-              data.forEach(val => {
-                productIdData.push(val.productId)
-              });
-              dispatch({
-                  type: ON_WISHLIST_UPDATE,
-                  payload: productIdData,
-              });
-          })
-          .catch((err) => {
-              console.log(err);
-          });
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
