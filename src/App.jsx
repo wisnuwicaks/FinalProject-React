@@ -14,6 +14,9 @@ import Navbarku from "./views/components/Navbar/Navbarku";
 import Navbar1 from "./views/components/Navbar/Navbar1";
 import AuthScreen from "./views/screens/Auth/AuthScreen";
 import UserProfile from "./views/screens/UserProfile/UserProfile";
+import ResetPassword from "./views/screens/ResetPassword/ResetPassword";
+import RequestReset from "./views/screens/RequestReset/RequestReset";
+
 
 import ProductDetails from "./views/screens/ProductDetails/ProductDetails";
 import AdminDashboard from "./views/screens/Admin/AdminDashboard";
@@ -91,6 +94,8 @@ class App extends React.Component {
             <Route exact path="/history" component={History} />
             <Route exact path="/test" component={Test} />
             <Route exact path="/userprofile" component={UserProfile} />
+            <Route path="/reset_password/:user_id/:reset_code" component={ResetPassword} />
+            <Route exact path="/request_reset" component={RequestReset} />
             <Route exact path="/navbar1" component={Navbar1} />
             {this.renderAdminRoutes()}
             {this.userRoutes()}

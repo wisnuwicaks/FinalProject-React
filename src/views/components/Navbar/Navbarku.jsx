@@ -131,7 +131,9 @@ class Navbarku extends React.Component {
     return <Redirect to="/" />;
   };
 
-  forgetPassword = () => {};
+  forgetPassword = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
+  };
 
   toggleDropdown = () => {
     this.setState({ dropdownOpen: !this.state.dropdownOpen });
@@ -456,7 +458,7 @@ class Navbarku extends React.Component {
                     <Form.Check type="checkbox" label="Show Password" />
                   </Form.Group>
                   <Form.Group>
-                    <Link onClick={() => this.forgetPassword()}>
+                    <Link to="/request_reset" onClick={() => this.forgetPassword()}>
                       Forget Password
                     </Link>
                   </Form.Group>
