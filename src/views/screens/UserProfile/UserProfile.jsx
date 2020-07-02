@@ -106,44 +106,42 @@ class UserProfile extends React.Component {
       });
   };
 
-  updatePasswordHandler = ()=>{
+  updatePasswordHandler = () => {
     const {
       oldPassword,
       newPassword,
       confirmPassword,
     } = this.state.updatePasswordForm;
-   const {completeKeyData} = this.state
-    let userData = { ...completeKeyData};
+    const { completeKeyData } = this.state;
+    let userData = { ...completeKeyData };
     console.log(userData);
-    
-    if(newPassword==confirmPassword){
-      Axios.post(`${API_URL}/users/changepassword`,userData,{
-        params:{
-          "oldPass":oldPassword,
-          "newPass":newPassword
-        }
+
+    if (newPassword == confirmPassword) {
+      Axios.post(`${API_URL}/users/changepassword`, userData, {
+        params: {
+          oldPass: oldPassword,
+          newPass: newPassword,
+        },
       })
-      .then((res) => {
-        console.log("berhasil");
-        swal(
-          "Password Changed",
-          "Your password has been successfully changed, please relogin",
-          "success"
-        );
-        this.props.onLogout();
-        console.log(res.data);
-      })
-      .catch((err) => {
-        alert("GAGAL kesalahan sistem");
-        console.log(err);
-      });
-    
+        .then((res) => {
+          console.log("berhasil");
+          swal(
+            "Password Changed",
+            "Your password has been successfully changed, please relogin",
+            "success"
+          );
+          this.props.onLogout();
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert("GAGAL kesalahan sistem");
+          console.log(err);
+        });
+      return <Redirect to="/" />;
+    } else {
+      alert("Password tidak cocok");
     }
-    else{
-      alert("Password tidak cocok")
-    }
-    
-  }
+  };
 
   renderUserProdfile = () => {
     const { userActive, editKeyState } = this.state;
@@ -183,118 +181,125 @@ class UserProfile extends React.Component {
       newPassword,
       confirmPassword,
     } = this.state.updatePasswordForm;
-    return (
-      <>
-        <div className="container mt-4 justify-content-center">
-          <div className="row" style={{ height: "400px" }}>
-            <div className="d-flex col-3 border justify-content-center align-items-center">
-              <img
-                src={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqRA4pk3_Er5dT5EIWADXtJdR-sIocsukz0Q&usqp=CAU"
-                }
-                alt=""
-              />
-            </div>
-            <div className="col">
-              <div className="d-flex">
-                <ButtonUI
-                  type={this.state.profileTab ? "contained" : "outlined"}
-                  onClick={this.setActiveTab}
-                  className="mr-1"
-                >
-                  User Profile
-                </ButtonUI>
-                <ButtonUI
-                  type={this.state.profileTab ? "outlined" : "contained"}
-                  onClick={this.setActiveTab}
-                >
-                  Change Password
-                </ButtonUI>
-              </div>
-              {this.state.profileTab ? (
-                <>
-                  <table>
-                    {this.renderUserProdfile()}
-                    <Button onClick={this.postUserProfile}>
-                      SUBMIT CHANGE
-                    </Button>
-                  </table>
-                </>
-              ) : (
-                <table>
-                  <tr>
-                    <td>
-                      <caption>Old Password</caption>
-                    </td>
-                    <td>
-                      <Form.Control
-                        value={this.state.updatePasswordForm.oldPassword}
-                        onChange={(e) =>
-                          this.inputHandler(
-                            e,
-                            "oldPassword",
-                            "updatePasswordForm"
-                          )
-                        }
-                        placeholder="Enter Old Password"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <caption>New Password</caption>
-                    </td>
-                    <td>
-                      <Form.Control
-                        value={this.state.updatePasswordForm.newPassword}
-                        onChange={(e) =>
-                          this.inputHandler(
-                            e,
-                            "newPassword",
-                            "updatePasswordForm"
-                          )
-                        }
-                        placeholder="Enter New Password"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <caption>Confirm Password</caption>
-                    </td>
-                    <td>
-                      <Form.Control
-                        value={this.state.updatePasswordForm.confirmPassword}
-                        onChange={(e) =>
-                          this.inputHandler(
-                            e,
-                            "confirmPassword",
-                            "updatePasswordForm"
-                          )
-                        }
-                        placeholder="Confirm New Password"
-                      />
-                      {newPassword !== confirmPassword &&
-                      confirmPassword !== "" ? 
-                        <p className="small" style={{ color: "red" }}>
-                          Password doesn't match
-                        </p>
-                       : 
-                        null
-                      }
-                    </td>
-                  </tr>
 
-                  <Button onClick={this.updatePasswordHandler}>
-                    UPDATE PASSWORD
-                  </Button>
-                </table>
-              )}
+    {
+      if (!this.props.user.id) {
+        return <Redirect to="/" />;
+      } else {
+        return (
+          <>
+            <div className="container mt-4 justify-content-center">
+              <div className="row" style={{ height: "400px" }}>
+                <div className="d-flex col-3 border justify-content-center align-items-center">
+                  <img
+                    src={
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqRA4pk3_Er5dT5EIWADXtJdR-sIocsukz0Q&usqp=CAU"
+                    }
+                    alt=""
+                  />
+                </div>
+                <div className="col">
+                  <div className="d-flex">
+                    <ButtonUI
+                      type={this.state.profileTab ? "contained" : "outlined"}
+                      onClick={this.setActiveTab}
+                      className="mr-1"
+                    >
+                      User Profile
+                    </ButtonUI>
+                    <ButtonUI
+                      type={this.state.profileTab ? "outlined" : "contained"}
+                      onClick={this.setActiveTab}
+                    >
+                      Change Password
+                    </ButtonUI>
+                  </div>
+                  {this.state.profileTab ? (
+                    <>
+                      <table>
+                        {this.renderUserProdfile()}
+                        <Button onClick={this.postUserProfile}>
+                          SUBMIT CHANGE
+                        </Button>
+                      </table>
+                    </>
+                  ) : (
+                    <table>
+                      <tr>
+                        <td>
+                          <caption>Old Password</caption>
+                        </td>
+                        <td>
+                          <Form.Control
+                            value={this.state.updatePasswordForm.oldPassword}
+                            onChange={(e) =>
+                              this.inputHandler(
+                                e,
+                                "oldPassword",
+                                "updatePasswordForm"
+                              )
+                            }
+                            placeholder="Enter Old Password"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <caption>New Password</caption>
+                        </td>
+                        <td>
+                          <Form.Control
+                            value={this.state.updatePasswordForm.newPassword}
+                            onChange={(e) =>
+                              this.inputHandler(
+                                e,
+                                "newPassword",
+                                "updatePasswordForm"
+                              )
+                            }
+                            placeholder="Enter New Password"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <caption>Confirm Password</caption>
+                        </td>
+                        <td>
+                          <Form.Control
+                            value={
+                              this.state.updatePasswordForm.confirmPassword
+                            }
+                            onChange={(e) =>
+                              this.inputHandler(
+                                e,
+                                "confirmPassword",
+                                "updatePasswordForm"
+                              )
+                            }
+                            placeholder="Confirm New Password"
+                          />
+                          {newPassword !== confirmPassword &&
+                          confirmPassword !== "" ? (
+                            <p className="small" style={{ color: "red" }}>
+                              Password doesn't match
+                            </p>
+                          ) : null}
+                        </td>
+                      </tr>
+
+                      <Button onClick={this.updatePasswordHandler}>
+                        UPDATE PASSWORD
+                      </Button>
+                    </table>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </>
-    );
+          </>
+        );
+      }
+    }
   }
 }
 

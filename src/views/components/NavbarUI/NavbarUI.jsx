@@ -52,7 +52,6 @@ const CircleBg = ({ children }) => {
 
 class Navbarku extends React.Component {
   state = {
-  
     loginForm: {
       username: "",
       password: "",
@@ -132,15 +131,14 @@ class Navbarku extends React.Component {
     return <Redirect to="/" />;
   };
 
-  showPasswordState=(e)=>{
-    const {checked}=e.target
-    if(checked){
-      this.setState({showPassword:"text"})
+  showPasswordState = (e) => {
+    const { checked } = e.target;
+    if (checked) {
+      this.setState({ showPassword: "text" });
+    } else {
+      this.setState({ showPassword: "password" });
     }
-    else{
-    this.setState({showPassword:"password"})
-    }
-  }
+  };
 
   forgetPassword = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
@@ -467,10 +465,17 @@ class Navbarku extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group>
-                    <Form.Check type="checkbox" label="Show Password" onClick={(e)=>this.showPasswordState(e)}/>
+                    <Form.Check
+                      type="checkbox"
+                      label="Show Password"
+                      onClick={(e) => this.showPasswordState(e)}
+                    />
                   </Form.Group>
                   <Form.Group>
-                    <Link to="/request_reset" onClick={() => this.forgetPassword()}>
+                    <Link
+                      to="/request_reset"
+                      onClick={() => this.forgetPassword()}
+                    >
                       Forget Password
                     </Link>
                   </Form.Group>
