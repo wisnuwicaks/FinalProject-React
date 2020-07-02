@@ -3,7 +3,7 @@ import { Carousel, CarouselControl, CarouselItem } from "reactstrap";
 import "./Home.css";
 
 import iPhoneX from "../../../assets/images/Showcase/iPhone-X.png";
-import ButtonUI from "../../components/Button/Button";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
 
 type ShowcaseItemProps = {
   id: number;

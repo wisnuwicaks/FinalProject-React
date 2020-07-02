@@ -56,7 +56,12 @@ export const loginHandler = (userData) => {
         }
       })
       .catch((err) => {
+        swal("Login Failed", "Username or password was wrong", "error");
         console.log(err);
+        dispatch({
+          type: ON_LOGIN_FAIL,
+          payload: "Username or password was wrong",
+        });
       });
   };
 };

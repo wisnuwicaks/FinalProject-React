@@ -16,7 +16,7 @@ import ProductCard from "../../components/Cards/ProductCard";
 import iPhoneX from "../../../assets/images/Showcase/iPhone-X.png";
 import iPhone8 from "../../../assets/images/Showcase/iPhone-8.png";
 import iPadPro from "../../../assets/images/Showcase/iPad-Pro.png";
-import ButtonUI from "../../components/Button/Button";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
 import CarouselShowcaseItem from "./CarouselShowcaseItem.tsx";
 import Colors from "../../../constants/Colors";
 import { API_URL } from "../../../constants/API";

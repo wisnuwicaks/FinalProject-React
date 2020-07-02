@@ -1,13 +1,13 @@
 import React from "react";
 import "./ProductDetails.css";
-import ButtonUI from "../../components/Button/Button";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
 import TextField from "../../components/TextField/TextField";
 import swal from "sweetalert";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { API_URL } from "../../../constants/API";
 import { cartUpdate } from "../../../redux/actions";
-import SizeBoxBtn from "../../components/Button/SizeBoxBtn";
+import SizeBoxBtn from "../../components/ButtonUI/SizeBoxBtn";
 
 class ProductDetails extends React.Component {
   state = {

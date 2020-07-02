@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductCard.css";
-import ButtonUI from "../Button/Button";
+import ButtonUI from "../ButtonUI/ButtonUI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar,faGrinHearts } from "@fortawesome/free-regular-svg-icons";
 import { faHeart} from "@fortawesome/free-solid-svg-icons";

@@ -5,7 +5,7 @@ import Axios from "axios";
 
 import { API_URL } from "../../../constants/API";
 
-import ButtonUI from "../../components/Button/Button";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
 import TextField from "../../components/TextField/TextField";
 
 import swal from "sweetalert";

@@ -21,18 +21,27 @@ import {
   Navbar,
   FormControl,
 } from "react-bootstrap";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
+import swal from "sweetalert";
 
 class UserProfile extends React.Component {
   state = {
     editKeyState: [],
-    completeKeyData:[],
+    completeKeyData: [],
+    profileTab: true,
+
+    updatePasswordForm: {
+      oldPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
+
     userActive: {
       fullName: "",
       email: "",
       username: "",
       password: "",
     },
-  
   };
 
   componentDidMount() {
@@ -48,10 +57,9 @@ class UserProfile extends React.Component {
             ["fullName"]: res.data.fullName,
             ["email"]: res.data.email,
             ["username"]: res.data.username,
-            ["password"]: res.data.password,
           },
         });
-        this.setState({completeKeyData:res.data})
+        this.setState({ completeKeyData: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +68,6 @@ class UserProfile extends React.Component {
 
   inputHandler = (e, field, form) => {
     const { value } = e.target;
-
     this.setState({
       [form]: {
         ...this.state[form],
@@ -81,19 +88,61 @@ class UserProfile extends React.Component {
     this.setState({ editKeyState: tempActive });
   };
 
-  postUserProfile = () =>{
-      const{userActive, completeKeyData} = this.state
-      let userData = {...completeKeyData,...userActive, }
-      Axios.put(`${API_URL}/users/updateprofile`,userData)
-      .then((res)=>{
-        console.log("berhasil"); 
-          alert("berhasil")
-          console.log(res.data); 
+  setActiveTab = () => {
+    this.setState({ profileTab: !this.state.profileTab });
+  };
+
+  postUserProfile = () => {
+    const { userActive, completeKeyData } = this.state;
+    let userData = { ...completeKeyData, ...userActive };
+    Axios.put(`${API_URL}/users/updateprofile`, userData)
+      .then((res) => {
+        console.log("berhasil");
+        alert("berhasil");
+        console.log(res.data);
       })
-      .catch(err=>{
-          console.log(err);
-          
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  updatePasswordHandler = ()=>{
+    const {
+      oldPassword,
+      newPassword,
+      confirmPassword,
+    } = this.state.updatePasswordForm;
+   const {completeKeyData} = this.state
+    let userData = { ...completeKeyData};
+    console.log(userData);
+    
+    if(newPassword==confirmPassword){
+      Axios.post(`${API_URL}/users/changepassword`,userData,{
+        params:{
+          "oldPass":oldPassword,
+          "newPass":newPassword
+        }
       })
+      .then((res) => {
+        console.log("berhasil");
+        swal(
+          "Password Changed",
+          "Your password has been successfully changed, please relogin",
+          "success"
+        );
+        this.props.onLogout();
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert("GAGAL kesalahan sistem");
+        console.log(err);
+      });
+    
+    }
+    else{
+      alert("Password tidak cocok")
+    }
+    
   }
 
   renderUserProdfile = () => {
@@ -107,9 +156,9 @@ class UserProfile extends React.Component {
           {editKeyState.includes(val) ? (
             <>
               <td>
-                <Form.Control 
-                value={userActive[val]} 
-                onChange={(e)=>this.inputHandler(e,val,"userActive")}
+                <Form.Control
+                  value={userActive[val]}
+                  onChange={(e) => this.inputHandler(e, val, "userActive")}
                 />
               </td>
               <td>
@@ -123,17 +172,21 @@ class UserProfile extends React.Component {
                 <Link onClick={() => this.editFieldHandler(val)}>Edit</Link>
               </td>
             </>
-          )
-          }
+          )}
         </tr>
       );
     });
   };
   render() {
+    const {
+      oldPassword,
+      newPassword,
+      confirmPassword,
+    } = this.state.updatePasswordForm;
     return (
       <>
         <div className="container mt-4 justify-content-center">
-          <div className="row">
+          <div className="row" style={{ height: "400px" }}>
             <div className="d-flex col-3 border justify-content-center align-items-center">
               <img
                 src={
@@ -143,8 +196,100 @@ class UserProfile extends React.Component {
               />
             </div>
             <div className="col">
-              <table>{this.renderUserProdfile()}</table>
-              <Button onClick={this.postUserProfile}>SUBMIT CHANGE</Button>
+              <div className="d-flex">
+                <ButtonUI
+                  type={this.state.profileTab ? "contained" : "outlined"}
+                  onClick={this.setActiveTab}
+                  className="mr-1"
+                >
+                  User Profile
+                </ButtonUI>
+                <ButtonUI
+                  type={this.state.profileTab ? "outlined" : "contained"}
+                  onClick={this.setActiveTab}
+                >
+                  Change Password
+                </ButtonUI>
+              </div>
+              {this.state.profileTab ? (
+                <>
+                  <table>
+                    {this.renderUserProdfile()}
+                    <Button onClick={this.postUserProfile}>
+                      SUBMIT CHANGE
+                    </Button>
+                  </table>
+                </>
+              ) : (
+                <table>
+                  <tr>
+                    <td>
+                      <caption>Old Password</caption>
+                    </td>
+                    <td>
+                      <Form.Control
+                        value={this.state.updatePasswordForm.oldPassword}
+                        onChange={(e) =>
+                          this.inputHandler(
+                            e,
+                            "oldPassword",
+                            "updatePasswordForm"
+                          )
+                        }
+                        placeholder="Enter Old Password"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <caption>New Password</caption>
+                    </td>
+                    <td>
+                      <Form.Control
+                        value={this.state.updatePasswordForm.newPassword}
+                        onChange={(e) =>
+                          this.inputHandler(
+                            e,
+                            "newPassword",
+                            "updatePasswordForm"
+                          )
+                        }
+                        placeholder="Enter New Password"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <caption>Confirm Password</caption>
+                    </td>
+                    <td>
+                      <Form.Control
+                        value={this.state.updatePasswordForm.confirmPassword}
+                        onChange={(e) =>
+                          this.inputHandler(
+                            e,
+                            "confirmPassword",
+                            "updatePasswordForm"
+                          )
+                        }
+                        placeholder="Confirm New Password"
+                      />
+                      {newPassword !== confirmPassword &&
+                      confirmPassword !== "" ? 
+                        <p className="small" style={{ color: "red" }}>
+                          Password doesn't match
+                        </p>
+                       : 
+                        null
+                      }
+                    </td>
+                  </tr>
+
+                  <Button onClick={this.updatePasswordHandler}>
+                    UPDATE PASSWORD
+                  </Button>
+                </table>
+              )}
             </div>
           </div>
         </div>

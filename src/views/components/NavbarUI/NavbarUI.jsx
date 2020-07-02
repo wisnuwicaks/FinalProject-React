@@ -34,8 +34,8 @@ import {
 import "bootstrap/dist/css/bootstrap.css";
 import { faUser, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../TextField/TextField";
-import "./Navbarku.css";
-import ButtonUI from "../Button/Button";
+import "./NavbarUI.css";
+import ButtonUI from "../ButtonUI/ButtonUI";
 import {
   registerHandler,
   loginHandler,
@@ -52,10 +52,11 @@ const CircleBg = ({ children }) => {
 
 class Navbarku extends React.Component {
   state = {
+  
     loginForm: {
       username: "",
       password: "",
-      showPassword: false,
+      showPassword: "text",
     },
     registerForm: {
       fullName: "",
@@ -130,6 +131,16 @@ class Navbarku extends React.Component {
     this.props.onLogout();
     return <Redirect to="/" />;
   };
+
+  showPasswordState=(e)=>{
+    const {checked}=e.target
+    if(checked){
+      this.setState({showPassword:"text"})
+    }
+    else{
+    this.setState({showPassword:"password"})
+    }
+  }
 
   forgetPassword = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
@@ -447,6 +458,7 @@ class Navbarku extends React.Component {
                   <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                      type={this.state.showPassword}
                       value={this.state.loginForm.password}
                       onChange={(e) =>
                         this.inputHandler(e, "password", "loginForm")
@@ -455,7 +467,7 @@ class Navbarku extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group>
-                    <Form.Check type="checkbox" label="Show Password" />
+                    <Form.Check type="checkbox" label="Show Password" onClick={(e)=>this.showPasswordState(e)}/>
                   </Form.Group>
                   <Form.Group>
                     <Link to="/request_reset" onClick={() => this.forgetPassword()}>

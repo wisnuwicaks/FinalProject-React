@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import Axios from "axios";
 import {connect} from 'react-redux'
 import { API_URL } from "../../../constants/API";
-import ButtonUI from "../../components/Button/Button"
+import ButtonUI from "../../components/ButtonUI/ButtonUI"
 
 import TextField from "../../components/TextField/TextField";
 

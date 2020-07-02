@@ -28,7 +28,7 @@ import ProductCard from "../../components/Cards/ProductCard";
 import Carousel1 from "../../../assets/images/Carousel/1.jpg";
 import Carousel2 from "../../../assets/images/Carousel/2.jpg";
 import Carousel3 from "../../../assets/images/Carousel/3.jpg";
-import ButtonUI from "../../components/Button/Button";
+import ButtonUI from "../../components/ButtonUI/ButtonUI";
 import CarouselShowcaseItem from "./CarouselShowcaseItem.tsx";
 import Colors from "../../../constants/Colors";
 import { API_URL } from "../../../constants/API";

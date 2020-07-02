@@ -10,9 +10,9 @@ import { cartUpdate } from "./redux/actions";
 
 import Home from "./views/screens/Home/Home";
 import HomeEdit from "./views/screens/Home/HomeEdit";
-import Navbarku from "./views/components/Navbar/Navbarku";
-import Navbar1 from "./views/components/Navbar/Navbar1";
-import AuthScreen from "./views/screens/Auth/AuthScreen";
+import NavbarUI from "./views/components/NavbarUI/NavbarUI";
+
+
 import UserProfile from "./views/screens/UserProfile/UserProfile";
 import ResetPassword from "./views/screens/ResetPassword/ResetPassword";
 import RequestReset from "./views/screens/RequestReset/RequestReset";
@@ -79,10 +79,10 @@ class App extends React.Component {
     if (this.props.user.cookieChecked) {
       return (
         <>
-          <Navbarku />
+          <NavbarUI />
           <Switch>
             <Route exact path="/" component={HomeEdit} />
-            <Route exact path="/auth" component={AuthScreen} />
+            
             <Route
               exact
               path="/product/:productId"
@@ -96,7 +96,7 @@ class App extends React.Component {
             <Route exact path="/userprofile" component={UserProfile} />
             <Route path="/reset_password/:user_id/:reset_code" component={ResetPassword} />
             <Route exact path="/request_reset" component={RequestReset} />
-            <Route exact path="/navbar1" component={Navbar1} />
+           
             {this.renderAdminRoutes()}
             {this.userRoutes()}
             <Route exact path="/pagenotfound" component={PageNotFound} />
