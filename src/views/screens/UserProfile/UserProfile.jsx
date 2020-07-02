@@ -11,7 +11,7 @@ import {
   cartUpdate,
   onCategoryChange,
 } from "../../../redux/actions";
-
+import "./UserProfile.css";
 import {
   Col,
   Form,
@@ -23,6 +23,19 @@ import {
 } from "react-bootstrap";
 import ButtonUI from "../../components/ButtonUI/ButtonUI";
 import swal from "sweetalert";
+
+const defaultImageProfile = {
+  backgroundImage: `url('http://localhost:8080/file/download/user_profile.png')`,
+
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+};
+const userImageProfile = {
+  backgroundImage: `url('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')`,
+
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+};
 
 class UserProfile extends React.Component {
   state = {
@@ -137,7 +150,6 @@ class UserProfile extends React.Component {
           alert("GAGAL kesalahan sistem");
           console.log(err);
         });
-      return <Redirect to="/" />;
     } else {
       alert("Password tidak cocok");
     }
@@ -190,13 +202,20 @@ class UserProfile extends React.Component {
           <>
             <div className="container mt-4 justify-content-center">
               <div className="row" style={{ height: "400px" }}>
-                <div className="d-flex col-3 border justify-content-center align-items-center">
+                <div
+                  // style={this.props.user.profilePicture? null:defaultImageProfile}
+                  className="d-flex col-3 border justify-content-center align-items-center pictureDiv"
+                >
                   <img
+                    className="profilePhoto"
                     src={
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqRA4pk3_Er5dT5EIWADXtJdR-sIocsukz0Q&usqp=CAU"
+                      this.props.user.profilePicture
+                        ? this.props.user.profilePicture
+                        : "http://localhost:8080/file/download/user_profile.png"
                     }
-                    alt=""
                   />
+                  <input type="file" name="" id=""/>
+                  <ButtonUI className="btnHide" onClick={alert("asd")}>Change Photo</ButtonUI>
                 </div>
                 <div className="col">
                   <div className="d-flex">

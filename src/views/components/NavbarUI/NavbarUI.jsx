@@ -166,7 +166,11 @@ class Navbarku extends React.Component {
                 >
                   <DropdownToggle tag="div" className="d-flex" color="white">
                     <img
-                      src={this.props.user.profilePicture}
+                      src={
+                        this.props.user.profilePicture
+                          ? this.props.user.profilePicture
+                          : "http://localhost:8080/file/download/default_profile_picture.png"
+                      }
                       width="25px"
                       alt=""
                     />
