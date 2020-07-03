@@ -214,8 +214,15 @@ class UserProfile extends React.Component {
                         : "http://localhost:8080/file/download/user_profile.png"
                     }
                   />
-                  <input type="file" name="" id=""/>
-                  <ButtonUI className="btnHide" onClick={alert("asd")}>Change Photo</ButtonUI>
+
+                  <label for="file-upload">
+                    <ButtonUI className="btnHide">Change Photo</ButtonUI>
+                  </label>
+                  <input
+                    style={{display:"none"}}
+                    id="file-upload"
+                    type="file"
+                  />
                 </div>
                 <div className="col">
                   <div className="d-flex">
