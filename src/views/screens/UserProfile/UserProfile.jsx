@@ -42,7 +42,7 @@ class UserProfile extends React.Component {
     editKeyState: [],
     completeKeyData: [],
     profileTab: true,
-
+    selectedFile: null,
     updatePasswordForm: {
       oldPassword: "",
       newPassword: "",
@@ -89,6 +89,10 @@ class UserProfile extends React.Component {
     });
   };
 
+  fileChangeHandler = (e) => {
+    this.setState({ selectedFile: e.target.files[0] });
+  };
+
   editFieldHandler = (keyEdit) => {
     const { editKeyState } = this.state;
     this.setState({ editKeyState: [...editKeyState, keyEdit] });
@@ -107,16 +111,65 @@ class UserProfile extends React.Component {
 
   postUserProfile = () => {
     const { userActive, completeKeyData } = this.state;
-    let userData = { ...completeKeyData, ...userActive };
-    Axios.put(`${API_URL}/users/updateprofile`, userData)
-      .then((res) => {
-        console.log("berhasil");
-        alert("berhasil");
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let formData = new FormData();
+    
+    
+    if(this.state.selectedFile){
+      formData.append(
+        "file",
+        this.state.selectedFile,
+        this.state.selectedFile.name
+      );
+
+      
+    let userData = { ...completeKeyData};
+
+      formData.append("userData", JSON.stringify(userData));
+      Axios.post(`${API_URL}/users/update_profile/photo`, formData)
+        .then((res) => {
+          console.log("berhasil upload res data");
+          alert("berhasil");
+          console.log(res.data);
+          this.setState({selectedFile:null})
+          this.getUserActive();
+
+        })
+        .catch((err) => {
+          alert("gagal")
+          console.log(err);
+        });
+
+    }
+    
+    let userData = { ...completeKeyData,...userActive};
+    Axios.put(`${API_URL}/users/update_profile/data`, userData)
+    .then((res) => {
+      console.log("berhasil update res data");
+      alert("berhasil");
+      console.log(res.data);
+      if(userActive.username !==completeKeyData.username){
+       this.props.onLogout();
+       swal(
+        "Your username has changed",
+        "Your username has been successfully changed, please relogin",
+        "success"
+      );
+      }
+      if(userActive.email !==completeKeyData.email){
+        this.props.onLogout();
+        swal(
+         "Your email has changed",
+         "Your email has been successfully changed, please relogin",
+         "success"
+       );
+       }
+      
+      this.getUserActive();
+    })
+    .catch((err) => {
+      alert("gagal")
+      console.log(err);
+    });
   };
 
   updatePasswordHandler = () => {
@@ -222,6 +275,7 @@ class UserProfile extends React.Component {
                     style={{display:"none"}}
                     id="file-upload"
                     type="file"
+                    onChange={this.fileChangeHandler}
                   />
                 </div>
                 <div className="col">
