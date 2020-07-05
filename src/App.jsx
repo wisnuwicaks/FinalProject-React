@@ -96,7 +96,7 @@ class App extends React.Component {
             <Route exact path="/history" component={History} />
             <Route exact path="/test" component={Test} />
             <Route exact path="/userprofile" component={UserProfile} />
-            <Route path="/reset_password/:user_id/:reset_code" component={ResetPassword} />
+            <Route exact path="/reset_password/:user_id/:reset_code+" component={ResetPassword} />
             <Route exact path="/request_reset" component={RequestReset} />
            
             {this.renderAdminRoutes()}
