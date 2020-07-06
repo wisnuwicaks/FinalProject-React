@@ -12,11 +12,11 @@ import Home from "./views/screens/Home/Home";
 import HomeEdit from "./views/screens/Home/HomeEdit";
 import NavbarUI from "./views/components/NavbarUI/NavbarUI";
 
+import SidebarUI from "./views/screens/Sidebar/SidebarUI";
 
 import UserProfile from "./views/screens/UserProfile/UserProfile";
 import ResetPassword from "./views/screens/ResetPassword/ResetPassword";
 import RequestReset from "./views/screens/RequestReset/RequestReset";
-
 
 import ProductDetails from "./views/screens/ProductDetails/ProductDetails";
 import AdminDashboard from "./views/screens/Admin/AdminDashboard";
@@ -38,10 +38,8 @@ class App extends React.Component {
   componentDidMount() {
     let cookieResult = cookieObj.get("authData");
     if (cookieResult) {
-      
       this.props.keepLogin(cookieResult);
     } else {
-     
       this.props.cookieChecker();
     }
   }
@@ -50,10 +48,13 @@ class App extends React.Component {
     if (this.props.user.role === "admin") {
       return (
         <>
+        <div className="row">
+          <SidebarUI /> 
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
-          <Route exact path="/payment" component={Payment} />
-          <Route exact path="/report" component={Report} />
-          <Route exact path="/member" component={Members} />
+          <Route exact path="/admin/payment" component={Payment} />
+          <Route exact path="/admin/report" component={Report} />
+          <Route exact path="/admin/member" component={Members} />
+          </div>
         </>
       );
     } else {
@@ -65,12 +66,11 @@ class App extends React.Component {
     if (this.props.user.id && this.props.user.role == "user") {
       return (
         <>
+      
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/wishlist" component={Wishlist} />
           <Route exact path="/allproduct" component={AllProduct} />
           <Route exact path="/history" component={History} />
-        
-
         </>
       );
     } else {
@@ -82,9 +82,13 @@ class App extends React.Component {
       return (
         <>
           <NavbarUI />
+          {/* {this.props.user.role == "admin" ? <SidebarUI /> : null} */}
+
           <Switch>
-            <Route exact path="/" component={HomeEdit} />
-            
+            {this.props.user.role == "admin" ? null : (
+              <Route exact path="/" component={HomeEdit} />
+            )}
+
             <Route
               exact
               path="/product/:productId"
@@ -96,9 +100,13 @@ class App extends React.Component {
             <Route exact path="/history" component={History} />
             <Route exact path="/test" component={Test} />
             <Route exact path="/userprofile" component={UserProfile} />
-            <Route exact path="/reset_password/:user_id/:reset_code+" component={ResetPassword} />
+            <Route
+              exact
+              path="/reset_password/:user_id/:reset_code+"
+              component={ResetPassword}
+            />
             <Route exact path="/request_reset" component={RequestReset} />
-           
+
             {this.renderAdminRoutes()}
             {this.userRoutes()}
             <Route exact path="/pagenotfound" component={PageNotFound} />

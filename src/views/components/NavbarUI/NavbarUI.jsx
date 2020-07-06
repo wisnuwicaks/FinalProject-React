@@ -50,7 +50,7 @@ const CircleBg = ({ children }) => {
   return <div className="circle-bg">{children}</div>;
 };
 
-class Navbarku extends React.Component {
+class NavbarUI extends React.Component {
   state = {
     loginForm: {
       username: "",
@@ -578,4 +578,4 @@ const mapDispatchToProps = {
   onCategoryChange,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbarku);
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarUI);

@@ -10,6 +10,16 @@ import TextField from "../../components/TextField/TextField";
 
 import swal from "sweetalert";
 
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  NavItem,
+  NavLink,
+  Nav,
+} from "react-bootstrap";
+
 class Payment extends React.Component {
   state = {
     paymentList: [],
@@ -19,20 +29,18 @@ class Payment extends React.Component {
     activePage: "success",
   };
 
-
-
   componentDidMount() {
     this.getPaymentList();
   }
 
   getPaymentList = () => {
-    Axios.get(`${API_URL}/transactions`,{
-        params:{
-          _expand:"user"
-        }
+    Axios.get(`${API_URL}/transactions`, {
+      params: {
+        _expand: "user",
+      },
     })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         this.setState({ paymentList: res.data });
       })
       .catch((err) => {
@@ -50,120 +58,138 @@ class Payment extends React.Component {
     });
   };
 
-  deleteProduct = (id) =>{
-
+  deleteProduct = (id) => {
     Axios.delete(`${API_URL}/products/${id}`)
-    .then(res=>{
-      this.getPaymentList()
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-    
-  }
+      .then((res) => {
+        this.getPaymentList();
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   viewPaymentDetailsBtn = (id) => {
-    Axios.get(`${API_URL}/transactions_detail`,{
-        params:{
-            transactionId : id
-        }
+    Axios.get(`${API_URL}/transactions_detail`, {
+      params: {
+        transactionId: id,
+      },
     })
-    .then(res=>{
-        console.log(res.data)
-        this.setState({paymentListDetail:res.data})
-      //   this.renderPaymentDetails()
-    })
-    .catch()
-  this.setState({
-    modalOpen: true,
-  });
-
-};
-
-
-  renderPaymentList = () => {
-    return this.state.paymentList.map((val, idx) => {
-      const {id, userId,totalPrice,status,buyDate,endTrx,user} = val;
-      const {username} = user
-      return <>
-      {status==this.state.activePage ?
-        (
-          <tr>
-        
-            <td> {userId}</td>
-            <td> {username} </td>
-            <td>
-              {" "}
-              {new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR",
-              }).format(totalPrice)}{" "}
-            </td>
-            <td>{status}</td>
-            <td>{buyDate}</td>
-            <td>{endTrx}</td>
-            <td><ButtonUI type="contained" onClick={() => this.viewPaymentDetailsBtn(id)}> View Details</ButtonUI></td>
-            <td><ButtonUI type="outlined" onClick={() => this.confirmTranscation(id)}> Confirm Transaction</ButtonUI></td>
-          </tr>
-        )
-    
-      : 
-      null
-      }
-      </>
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ paymentListDetail: res.data });
+        //   this.renderPaymentDetails()
+      })
+      .catch();
+    this.setState({
+      modalOpen: true,
     });
   };
 
- 
-  renderPaymentDetails = () =>{
-      return this.state.paymentListDetail.map((val)=>{
-          const {transactionId,productId,price,quantity,total_price}=val
-          return (
-              <tr>
-            <td>{transactionId}</td>
-            <td>{productId}</td>
-            <td>{price}</td>
-            <td>{quantity}</td>
-            <td>{total_price}</td>
+  renderPaymentList = () => {
+    return this.state.paymentList.map((val, idx) => {
+      const { id, userId, totalPrice, status, buyDate, endTrx, user } = val;
+      const { username } = user;
+      return (
+        <>
+          {status == this.state.activePage ? (
+            <tr>
+              <td> {userId}</td>
+              <td> {username} </td>
+              <td>
+                {" "}
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                }).format(totalPrice)}{" "}
+              </td>
+              <td>{status}</td>
+              <td>{buyDate}</td>
+              <td>{endTrx}</td>
+              <td>
+                <ButtonUI
+                  type="contained"
+                  onClick={() => this.viewPaymentDetailsBtn(id)}
+                >
+                  {" "}
+                  View Details
+                </ButtonUI>
+              </td>
+              <td>
+                <ButtonUI
+                  type="outlined"
+                  onClick={() => this.confirmTranscation(id)}
+                >
+                  {" "}
+                  Confirm Transaction
+                </ButtonUI>
+              </td>
             </tr>
-          )
-      })
-  }
-  confirmTranscation =(idSusccess)=>{
-    Axios.get(`${API_URL}/transactions/${idSusccess}`)
-    .then(res=>{
-      if (res.data.status !=="success"){
-        Axios.patch(`${API_URL}/transactions/${idSusccess}`,{
-      
-          status:"success",
+          ) : null}
+        </>
+      );
+    });
+  };
+
+  renderPaymentDetails = () => {
+    return this.state.paymentListDetail.map((val) => {
+      const { transactionId, productId, price, quantity, total_price } = val;
+      return (
+        <tr>
+          <td>{transactionId}</td>
+          <td>{productId}</td>
+          <td>{price}</td>
+          <td>{quantity}</td>
+          <td>{total_price}</td>
+        </tr>
+      );
+    });
+  };
+  confirmTranscation = (idSusccess) => {
+    Axios.get(`${API_URL}/transactions/${idSusccess}`).then((res) => {
+      if (res.data.status !== "success") {
+        Axios.patch(`${API_URL}/transactions/${idSusccess}`, {
+          status: "success",
           endTrx: new Date().toString(),
-      })
-      .then(res=>{
-        console.log(res.data)
-        this.getPaymentList()
-      })
-      .catch(err=>{
-        console.log(err)
-      })
+        })
+          .then((res) => {
+            console.log(res.data);
+            this.getPaymentList();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        swal(
+          "Confirmation Status",
+          "Selected transaction already confirmed",
+          "error"
+        );
       }
-      else{
-        swal("Confirmation Status","Selected transaction already confirmed","error")
-      }
-    })
-    
-  }
+    });
+  };
 
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
   };
 
-  
-
   render() {
     return (
-      <div className="py-4 mx-5">
-        <div className="d-flex flex-row">
+      <div className="col-10 border d-inline-block">
+        <Nav variant="tabs" defaultActiveKey="/home">
+          <Nav.Item>
+            <Nav.Link href="/admin/payment">Active</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="link-1">Option 2</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="disabled" disabled>
+              Disabled
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+        {/* <div className="d-flex flex-row">
               <ButtonUI
                 className={`auth-screen-btn ${
                   this.state.activePage == "success" ? "active" : null
@@ -182,28 +208,30 @@ class Payment extends React.Component {
               >
                 Pending Transactions
               </ButtonUI>
-            </div>
-        <div className="dashboard" >
+            </div> */}
+
+        {/* <div className="dashboard">
           <caption className="p-3">
             <h2>Transactions</h2>
           </caption>
           <table className="dashboard-table">
             <thead>
-              <tr > 
-              
+              <tr>
                 <th>User ID</th>
                 <th>Username</th>
                 <th>Total Price</th>
                 <th>Status</th>
                 <th>Buy Date</th>
                 <th>Finish Trx</th>
-                <th colSpan="2" className="text-center">Action</th>
+                <th colSpan="2" className="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>{this.renderPaymentList()}</tbody>
           </table>
-        </div>
-       
+        </div> */}
+
         <Modal
           toggle={this.toggleModal}
           isOpen={this.state.modalOpen}
@@ -215,36 +243,29 @@ class Payment extends React.Component {
             </caption>
           </ModalHeader>
           <ModalBody>
-             
-                <div className="row">
-              
-                <table className="table">
-                    <thead>
-                        <th>Transaction ID</th>
-                        <th>Product ID</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </thead>
-                    <tbody>
-                        {this.renderPaymentDetails()}
-                    </tbody>
-                </table>
-               
-                <div className="col-12 mt-3">
-                    <center>
-                        <ButtonUI
+            <div className="row">
+              <table className="table">
+                <thead>
+                  <th>Transaction ID</th>
+                  <th>Product ID</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
+                </thead>
+                <tbody>{this.renderPaymentDetails()}</tbody>
+              </table>
+
+              <div className="col-12 mt-3">
+                <center>
+                  <ButtonUI
                     className="w-100"
                     onClick={this.toggleModal}
                     type="outlined"
-                    >
+                  >
                     OK
-                    </ButtonUI>
-                    </center>
-                    
-                </div>
-                
-               
+                  </ButtonUI>
+                </center>
+              </div>
             </div>
           </ModalBody>
         </Modal>

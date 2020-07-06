@@ -201,7 +201,7 @@ class AdminDashboard extends React.Component {
 
   render() {
     return (
-      <div className="container py-4">
+      <div className="col-10 border border-primary" >
         <div className="dashboard">
           <caption className="p-3">
             <h2>Products</h2>
