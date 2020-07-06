@@ -84,22 +84,28 @@ class SidebarUI extends React.Component {
   render() {
     return (
       <>
-      <div className="col-2 border border-danger">
-        <Nav defaultActiveKey="/admin/dashboard" className="flex-column">
-          <Nav.Link href="/admin/dashboard">Dashboard</Nav.Link>
-          <Nav.Link href="/admin/report">Report</Nav.Link>
-          <Nav.Link href="/admin/payment">Payment</Nav.Link>
-          <Nav.Link eventKey="disabled" disabled>
-            Disabled
-          </Nav.Link>
-        </Nav>
-        
-      
-      </div>
+        <div className="col-2  sidebarProps">
+          <dir className="m-2 "> 
+            <div className="panelTitle w-100">
+              <Link className="textWhite" to="/admin/dashboard">
+                Admin Panel
+              </Link>
+            </div>
+            <div>
+              <Link className="textWhite" to="/admin/report">
+                Report
+              </Link>
+            </div>
+            <div>
+              <Link className="textWhite" to="/admin/payment">
+                Payment
+              </Link>
+            </div>
+          </dir>
+        </div>
       </>
-    )
-    }
-  
+    );
+  }
 }
 const mapStateToProps = (state) => {
   return {
