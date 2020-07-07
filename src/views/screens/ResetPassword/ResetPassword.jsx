@@ -27,7 +27,8 @@ import swal from "sweetalert";
 
 class ResetPassword extends React.Component {
   state = {
-    notfound: false,
+    linkNotFound: false,
+    isPasswordReseted :false,
     userReset: {},
     newPassword: {
       password: "",
@@ -52,7 +53,7 @@ class ResetPassword extends React.Component {
         console.log(this.state.userReset);
       })
       .catch((err) => {
-        this.setState({ notfound: true });
+        this.setState({ linkNotFound: true });
         console.log(err);
       });
   };
@@ -75,7 +76,9 @@ class ResetPassword extends React.Component {
       .then((res) => {
         console.log("berhasil");
         swal("Request Success", "Your password has been reseted", "success");
-        this.setState({ newPassword: { password: "" } });
+        this.setState({ newPassword: { password: "" } });//mengosongkan input field new password
+        this.setState({isPasswordReseted:true})//mengubah state jika berhasil direset, untuk masuk else if
+
         console.log(res.data);
       })
       .catch((err) => {
@@ -85,10 +88,14 @@ class ResetPassword extends React.Component {
   };
 
   render() {
-    if (this.state.notfound == true) {
+    if (this.state.linkNotFound) {
       alert("Link not valid");
       return <Redirect to="/" />;
-    } else {
+    } 
+    else if(this.state.isPasswordReseted){
+      return <Redirect to="/" />;
+    }
+    else {
       return (
         <>
           <div className="container mt-4 ">

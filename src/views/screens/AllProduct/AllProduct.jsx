@@ -89,8 +89,10 @@ class AllProduct extends React.Component {
           console.log(err);
         });
     }
+    else{
+      swal("Error", "Pelase login first", "error");
+    }
 
-    swal("Error", "Pelase login first", "error");
   };
 
   deleteWishList = (idToDelete) => {

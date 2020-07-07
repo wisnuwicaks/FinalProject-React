@@ -1,6 +1,7 @@
 import React from "react";
 import "./AdminDashboard.css";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Button,Pagination } from "react-bootstrap";
 import Axios from "axios";
 
 import { API_URL } from "../../../constants/API";
@@ -13,6 +14,7 @@ import swal from "sweetalert";
 class AdminDashboard extends React.Component {
   state = {
     productList: [],
+    activePage :0,
     createForm: {
       productName: "",
       price: 0,
@@ -33,7 +35,7 @@ class AdminDashboard extends React.Component {
   };
 
   getProductList = () => {
-    Axios.get(`${API_URL}/products`)
+    Axios.get(`${API_URL}/products/allproducts`)
       .then((res) => {
         this.setState({ productList: res.data });
       })
@@ -42,22 +44,20 @@ class AdminDashboard extends React.Component {
       });
   };
 
-  deleteProduct = (id) =>{
-
+  deleteProduct = (id) => {
     Axios.delete(`${API_URL}/products/${id}`)
-    .then(res=>{
-      this.getProductList()
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-    
-  }
+      .then((res) => {
+        this.getProductList();
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   renderProductList = () => {
     return this.state.productList.map((val, idx) => {
-      const { id, productName, price, category, image, desc } = val;
+      const { id, productName, price, category, image, size } = val;
       return (
         <>
           <tr
@@ -75,7 +75,7 @@ class AdminDashboard extends React.Component {
               }
             }}
           >
-            <td> {idx+1} </td>
+            <td> {idx + 1} </td>
             <td> {productName} </td>
             <td>
               {" "}
@@ -84,51 +84,12 @@ class AdminDashboard extends React.Component {
                 currency: "IDR",
               }).format(price)}{" "}
             </td>
-          </tr>
-          <tr
-            className={`collapse-item ${
-              this.state.activeProducts.includes(idx) ? "active" : null
-            }`}
-          >
-            <td className="" colSpan={3}>
-              <div className="d-flex justify-content-around align-items-center">
-                <div className="d-flex">
-                  <img src={image} alt="" />
-                  <div className="d-flex flex-column ml-4 justify-content-center">
-                    <h5>{productName}</h5>
-                    <h6 className="mt-2">
-                      Category:
-                      <span style={{ fontWeight: "normal" }}> {category}</span>
-                    </h6>
-                    <h6>
-                      Price:
-                      <span style={{ fontWeight: "normal" }}>
-                        {" "}
-                        {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
-                          currency: "IDR",
-                        }).format(price)}
-                      </span>
-                    </h6>
-                    <h6>
-                      Description:
-                      <span style={{ fontWeight: "normal" }}> {desc}</span>
-                    </h6>
-                  </div>
-                </div>
-                <div className="d-flex flex-column align-items-center">
-                  <ButtonUI
-                    onClick={(_) => this.editBtnHandler(idx)}
-                    type="contained"
-                  >
-                    Edit
-                  </ButtonUI>
-                  <ButtonUI className="mt-3" type="textual" onClick={()=>this.deleteProduct(id)}>
-                    
-                    Delete
-                  </ButtonUI>
-                </div>
-              </div>
+            <td>{size}</td>
+            <td>
+              <img src={image} width="50px" alt="" />
+            </td>
+            <td>
+              <Button>Edit</Button>
             </td>
           </tr>
         </>
@@ -199,9 +160,23 @@ class AdminDashboard extends React.Component {
     this.getProductList();
   }
 
+  activePageHandler = (whichPage)=>{
+    this.setState({activePage: whichPage })
+  }
+
+  renderActivePage = (activePage) =>{
+    let arrPage = [1,2,3,4,5]
+    let temp = [...arrPage]
+    let lastVal = temp[temp.length-1]
+    return arrPage.map((val)=>{
+      return val+lastVal
+    }
+    )
+    
+  }
   render() {
     return (
-      <div className="col-10 border border-primary" >
+      <div className="col-10 border border-primary">
         <div className="dashboard">
           <caption className="p-3">
             <h2>Products</h2>
@@ -209,13 +184,34 @@ class AdminDashboard extends React.Component {
           <table className="dashboard-table">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
                 <th>Price</th>
+                <th>Size</th>
+                <th>Image</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>{this.renderProductList()}</tbody>
           </table>
+      <div className="d-flex justify-content-center border">
+      
+      <Pagination>
+            <Pagination.First />
+            <Pagination.Prev />
+            {this.renderActivePage(this.state.activePage)}
+            
+{/*          
+            <Pagination.Item active >{1}</Pagination.Item>
+            <Pagination.Item>{2}</Pagination.Item>
+            <Pagination.Item>{3}</Pagination.Item>
+            <Pagination.Item>{4}</Pagination.Item>
+            <Pagination.Item>{5}</Pagination.Item> */}
+            <Pagination.Next />
+            <Pagination.Last />
+          </Pagination>
+      </div>
+          
         </div>
         <div className="dashboard-form-container p-4">
           <caption className="mb-4 mt-2">

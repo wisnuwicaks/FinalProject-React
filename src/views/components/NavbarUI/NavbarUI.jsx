@@ -55,7 +55,7 @@ class NavbarUI extends React.Component {
     loginForm: {
       username: "",
       password: "",
-      showPassword: "text",
+      showPassword: false,
     },
     registerForm: {
       fullName: "",
@@ -85,15 +85,28 @@ class NavbarUI extends React.Component {
   };
 
   inputHandler = (e, field, form) => {
-    const { value } = e.target;
 
+    const { value} = e.target;
+      this.setState({
+        [form]: {
+          ...this.state[form],
+          [field]: value,
+        },
+      });
+   
+  
+    
+  };
+
+  checkBoxHandler=(e, field, form)=>{
+    const { checked } = e.target;
     this.setState({
       [form]: {
         ...this.state[form],
-        [field]: value,
+        [field]: checked,
       },
     });
-  };
+  }
   loginBtnHandler = () => {
     const { username, password } = this.state.loginForm;
     let newUserLogin = {
@@ -460,7 +473,7 @@ class NavbarUI extends React.Component {
                   <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                      type={this.state.showPassword}
+                      type={this.state.loginForm.showPassword?"text":"password"}
                       value={this.state.loginForm.password}
                       onChange={(e) =>
                         this.inputHandler(e, "password", "loginForm")
@@ -472,7 +485,7 @@ class NavbarUI extends React.Component {
                     <Form.Check
                       type="checkbox"
                       label="Show Password"
-                      onClick={(e) => this.showPasswordState(e)}
+                      onChange={(e) => this.checkBoxHandler(e, "showPassword", "loginForm")}
                     />
                   </Form.Group>
                   <Form.Group>
@@ -535,6 +548,7 @@ class NavbarUI extends React.Component {
                   <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                    type={this.state.registerForm.showPassword?"text":"password"}
                       value={this.state.registerForm.password}
                       onChange={(e) =>
                         this.inputHandler(e, "password", "registerForm")
@@ -543,7 +557,10 @@ class NavbarUI extends React.Component {
                     />
                   </Form.Group>
                   <Form.Group>
-                    <Form.Check type="checkbox" label="Show Password" />
+                    <Form.Check 
+                    onChange={(e)=>this.checkBoxHandler(e,"showPassword","registerForm")}
+                    type="checkbox" 
+                    label="Show Password" />
                   </Form.Group>
                 </Form>
                 <div className="col-12 text-center">

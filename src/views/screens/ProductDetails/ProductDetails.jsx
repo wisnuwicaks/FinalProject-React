@@ -85,33 +85,31 @@ class ProductDetails extends React.Component {
         "error"
       );
     } else {
-      Axios.get(`${API_URL}/carts`, {
-        params: {
-          userId: this.props.user.id,
-        },
-      }).then((res) => {
+      Axios.get(`${API_URL}/carts/user/${this.props.user.id}`)
+        .then((res) => {
         console.log(res);
         this.setState({ cartDataNow: res.data });
         let cekDuplicate = this.state.cartDataNow.findIndex((val) => {
           return (
-            val.productId == this.state.productData.id &&
+            val.product.id == this.state.productData.id &&
             val.size == this.state.selectedSize
           );
         });
         alert(cekDuplicate);
         if (cekDuplicate == -1) {
           console.log(this.state.productData.id);
-          Axios.post(`${API_URL}/carts`, {
-            userId: this.props.user.id,
-            productId: this.state.productData.id,
-            size: this.state.selectedSize,
-            quantity: 1,
-          })
+          Axios.post(
+            `${API_URL}/carts/add_to_cart/${this.props.user.id}/${this.state.productData.id}`,
+            {
+              size: this.state.selectedSize,
+              quantity: 1,
+            }
+          )
             .then((res) => {
-              console.log(res);
+              console.log(res.data);
               swal(
                 "Add to cart",
-                "Your item has been added to your cart",
+                "New item has been added to your cart",
                 "success"
               );
               this.props.cartUpdate(this.props.user.id);
@@ -122,33 +120,13 @@ class ProductDetails extends React.Component {
         } else {
           swal(
             "Add to cart",
-            "Your item has been added to your cart",
+            "Quantity item has been added to your cart",
             "success"
           );
-          Axios.get(
-            `${API_URL}/carts/${this.state.cartDataNow[cekDuplicate].id}`,
-            {
-              params: {
-                size: this.state.selectedSize,
-              },
-            }
-          )
+          Axios.put(`${API_URL}/carts/update_qty/${this.state.cartDataNow[cekDuplicate].id}`)
             .then((resSameData) => {
-              const { data } = resSameData;
-              console.log(data);
-              Axios.put(`${API_URL}/carts/${data.id}`, {
-                userId: this.state.cartDataNow[cekDuplicate].userId,
-                productId: this.state.cartDataNow[cekDuplicate].productId,
-                size: this.state.cartDataNow[cekDuplicate].size,
-                quantity: this.state.cartDataNow[cekDuplicate].quantity + 1,
-                id: this.state.cartDataNow[cekDuplicate].id,
-              })
-                .then((res) => {
-                  console.log(res);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
+              alert("masuk")
+              console.log(resSameData)
             })
             .catch((err) => {
               console.log(err);
@@ -246,12 +224,9 @@ class ProductDetails extends React.Component {
                 <h6>Selected Size : {this.state.selectedSize}</h6>
               )}
             </div>
-            {this.state.productData.size == "" ? (
-             null
-              ) : (
-                <div className="d-flex border">{this.renderSize()}</div>
-              )}
-          
+            {this.state.productData.size == "" ? null : (
+              <div className="d-flex border">{this.renderSize()}</div>
+            )}
 
             <div className="d-flex mt-4">
               <ButtonUI onClick={this.addToCartHandler}>Add To Cart</ButtonUI>
