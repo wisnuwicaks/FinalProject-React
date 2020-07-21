@@ -1,0 +1,48 @@
+:root {
+    --accent-default : #f3c8c8;
+    --accent-light : #ff5555;
+    --accent-dark : #f70606;
+   
+  }
+  
+  .sizeBoxBtn {
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+    max-width: 40px;
+    padding-left: 10px ;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    
+    transition: all ease-in-out 100ms;
+  }
+  
+  .sizeBoxBtn:hover {
+    cursor: pointer;
+  }
+  
+  .sizeBoxBtn {
+    color: var(--accent-dark);
+    border: solid 1px var(--accent-dark);
+  
+  }
+  
+  .sizeBoxBtn:hover {
+    background-color: var(--accent-dark);
+    color:white;
+    border: solid 1px var(--accent-light);
+    
+  }
+  
+  .sizeBoxBtn.active {
+    background-color: var(--accent-dark);
+    border: solid 1px var(--accent-dark);
+    color: white;
+  }
+  

@@ -1,0 +1,31 @@
+.dashboard {
+    border-left: 1px solid #dbdde0;
+    border-right: 1px solid #dbdde0;
+    border-top: 1px solid #dbdde0;
+  }
+  
+  .dashboard-table {
+    width: 100%;
+  }
+  
+  
+  .dashboard-form-container {
+    border: 1px solid #dbdde0;
+    border-radius: 8px;
+    border-top: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 100%;
+  }
+  
+  .edit-modal img {
+    height: 160px;
+    /* width: 200px; */
+    /* object-fit: contain; */
+  }
+  
+  .paddingNol{
+    padding: 0 !important;
+    margin: 0px !important;
+  }
+  

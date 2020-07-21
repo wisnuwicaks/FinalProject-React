@@ -1,0 +1,19 @@
+:root {
+    --accent-default: #3c64b1;
+    --accent-dark: #1e4693;
+    --accent-light: #fbff00;
+    --navbar-bg : #f70606;
+    --navbar-color : white
+  }
+  
+  .panelTitle{
+  
+  }
+
+  .textWhite{
+    color: white !important;
+  }
+
+  .sidebarProps{
+    background-image: linear-gradient(to bottom, black , red);
+  }

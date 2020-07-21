@@ -1,0 +1,72 @@
+:root {
+  --accent-default: #3c64b1;
+  --accent-dark: #1e4693;
+  --accent-light: #5a82cf;
+  --contained-bg : #f70606;
+  --contained-light : #ff5555;
+}
+
+.custom-btn {
+  padding: 12px 18px;
+  border-radius: 5px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.3px;
+  width: fit-content;
+  transition: all ease-in-out 100ms;
+}
+
+.custom-btn:hover {
+  cursor: pointer;
+}
+
+.custom-btn-outlined {
+  border: 1px solid var(--contained-bg);
+  color: var(--contained-bg)
+}
+
+.custom-btn-outlined:hover {
+  border: 1px solid var(--contained-light);
+  color: var(--contained-light)
+}
+
+.custom-btn-outlined:active {
+  border: 1px solid var(--accent-dark);
+  color: var(--accent-dark);
+}
+
+.custom-btn-contained {
+  border: 1px solid var(--contained-bg);
+  background-color: var(--contained-bg);
+  color: white;
+}
+
+.custom-btn-contained:hover {
+  border: 1px solid var(--contained-light);
+  background-color: var(--contained-light);
+  color: white;
+}
+
+.custom-btn-contained:active {
+  border: 1px solid var(--contained-bg);
+  background-color: var(--contained-bg);
+  color: white;
+}
+
+.custom-btn-textual {
+  color: var(--accent-default);
+  padding: 0 !important;
+}
+
+.custom-btn-textual:hover {
+  color: var(--accent-light);
+}
+
+.custom-btn-textual:active {
+  color: var(--accent-dark);
+}

@@ -1,0 +1,49 @@
+:root {
+  --gray-divider: #e2e5e6;
+  --gray-default: #c3cbcd;
+}
+
+
+.dashboard {
+  border-left: 1px solid #dbdde0;
+  border-right: 1px solid #dbdde0;
+  border-top: 1px solid #dbdde0;
+}
+
+.dashboard-table {
+  width: 100%;
+}
+
+.dashboard-form-container {
+  border: 1px solid #dbdde0;
+  border-radius: 8px;
+  border-top: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 100%;
+}
+
+.paddingNol{
+  padding: 0 !important;
+  margin: 0px !important;
+}
+
+.noTopBorder{
+  border-bottom:3px solid var(--gray-divider);
+  border-right:3px solid var(--gray-divider);
+  border-left:3px solid var(--gray-divider);
+
+}
+
+.mylink{
+  color: blue;
+}
+.mylink:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.imgzoom:hover{
+  /* background-image: url(); */
+  transform : scale(1.2)
+}

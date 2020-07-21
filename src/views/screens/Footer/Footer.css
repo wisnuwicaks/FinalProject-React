@@ -1,0 +1,49 @@
+.carousel-item-home-bg {
+    background: rgb(7, 15, 32);
+    background: linear-gradient(
+      90deg,
+      rgba(7, 15, 32, 1) 6%,
+      rgba(60, 100, 177, 1) 69%,
+      rgba(90, 130, 207, 1) 100%
+    );
+  }
+  
+  .carousel-item-home {
+    width: 100vw;
+    height: 600px;
+  
+  }
+  
+  .layerButton{
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+   
+  }
+  
+  
+  .layerBackground{
+    z-index: 1;
+    position: absolute;
+    height: 100px;
+  }
+  
+  .btnHover{
+    opacity: 0.7;
+    border: solid white !important;
+  }
+  
+  .btnHover:hover{
+    opacity: 0.8 !important;
+    border: none !important;
+    background-color: black;
+    border: none;
+  }
+  
+  .rowH{
+    height: 600px;
+  }
+  
+  .footnoteColor{
+    color: white !important;
+  }
